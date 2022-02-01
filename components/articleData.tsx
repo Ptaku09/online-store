@@ -10,7 +10,7 @@ type Props = {
 
 export default function ArticleData({ index, title, titleDesc, description }: Props) {
   return (
-    <div>
+    <div className="lg:w-4/5 2xl:w-3/5">
       <h1 className="absolute text-9xl font-bold opacity-30">{index}</h1>
       <div className="mt-16 ml-20">
         <TitleDesc desc={titleDesc} />
