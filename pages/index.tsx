@@ -4,6 +4,7 @@ import TitleDesc from '../components/titleDesc';
 import { GetStaticProps } from 'next';
 import { useTheme } from 'next-themes';
 import Article from '../components/article';
+import Newsletter from '../components/newsletter';
 
 export default function Home() {
   const { theme, setTheme } = useTheme();
@@ -48,6 +49,10 @@ export default function Home() {
             description="Lorem ipsum dolor sit amet consectetur adipiscing elit sed diam Lorem ipsum dolor sit amet consectetur adipiscing elit sed diam Lorem ipsum dolor sit amet consectetur adipiscing elit sed diam Lorem ipsum dolor sit amet consectetur adipiscing elit sed diam"
             imageOnLeft={true}
           />
+          <h2 className="text-6xl border-t-2 border-t-orange-400 w-full md:w-4/5 text-center pb-6 pt-12 font-serif dark:text-white text-black">
+            Let&apos;s keep in touch!
+          </h2>
+          <Newsletter />
         </div>
       </div>
     </div>
