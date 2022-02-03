@@ -1,30 +1,70 @@
 import React, { useEffect, useState } from 'react';
-import { faMoon, faShoppingBasket, faSun, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faMoon, faShoppingBasket, faSun, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
+import { Menu } from '@headlessui/react';
 
 export default function Navbar() {
-  const [mounted, setMounted] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(768);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    setMounted(true);
+    setScreenWidth(window.screen.width);
   }, []);
-
-  if (!mounted) return null;
 
   return (
     <header className="absolute bg-black w-screen h-10 top-0 flex justify-center items-center font-['Outfit'] text-white z-10">
       <Link href="/">
         <a className="font-bold absolute left-5">FVRT_STR</a>
       </Link>
-      <div className="flex flex-row">
-        <h1>MEN</h1>
-        <h1 className="ml-10 mr-10">WOMEN</h1>
-        <h1>KIDS</h1>
-      </div>
-      <div className="flex flex-row absolute right-5">
+      {screenWidth < 768 ? (
+        <div className="flex flex-col w-screen">
+          <Menu as="div">
+            <div className="flex items-center justify-center">
+              <Menu.Button className="py-2 text-white">
+                SHOP <FontAwesomeIcon icon={faChevronDown} />
+              </Menu.Button>
+            </div>
+            <Menu.Items className="absolute text-black text-center w-full bg-white divide-y divide-gray-200 rounded-b-md shadow-lg">
+              <div className="py-4">
+                <Menu.Item>
+                  <Link href="#">
+                    <a>MEN</a>
+                  </Link>
+                </Menu.Item>
+              </div>
+              <div className="py-4">
+                <Menu.Item>
+                  <Link href="#">
+                    <a>WOMEN</a>
+                  </Link>
+                </Menu.Item>
+              </div>
+              <div className="py-4">
+                <Menu.Item>
+                  <Link href="#">
+                    <a>KIDS</a>
+                  </Link>
+                </Menu.Item>
+              </div>
+            </Menu.Items>
+          </Menu>
+        </div>
+      ) : (
+        <>
+          <Link href="#">
+            <a className="hover:text-orange-400">MEN</a>
+          </Link>
+          <Link href="#">
+            <a className="hover:text-orange-400 mx-10">WOMEN</a>
+          </Link>
+          <Link href="#">
+            <a className="hover:text-orange-400">KIDS</a>
+          </Link>
+        </>
+      )}
+      <div className="absolute right-5">
         {theme === 'light' ? (
           <FontAwesomeIcon className="cursor-pointer" icon={faMoon} onClick={() => setTheme('dark')} />
         ) : (
