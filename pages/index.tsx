@@ -2,13 +2,10 @@ import Head from 'next/head';
 import React from 'react';
 import TitleDesc from '../components/titleDesc';
 import { GetStaticProps } from 'next';
-import { useTheme } from 'next-themes';
 import Article from '../components/article';
 import Newsletter from '../components/newsletter';
 
 export default function Home() {
-  const { theme, setTheme } = useTheme();
-
   const handleScrollDown = (): void => {
     window.scrollTo({
       top: window.screen.height,
