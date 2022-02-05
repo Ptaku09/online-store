@@ -5,6 +5,9 @@ import { GetStaticProps } from 'next';
 import Article from '../components/article';
 import Newsletter from '../components/newsletter';
 import Footer from '../components/footer';
+import Link from 'next/link';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Home() {
   const handleScrollDown = (): void => {
@@ -36,17 +39,43 @@ export default function Home() {
           <h2 className="text-6xl font-serif dark:text-white text-black mt-0 mb-12 lg:mt-32 lg:mb-24 2xl:mt-24">Why you should choose us?</h2>
           <Article
             index="01"
-            title="Test Title"
-            titleDesc="Test description"
-            description="Lorem ipsum dolor sit amet consectetur adipiscing elit sed diam"
+            title="Premium materials"
+            titleDesc="quality is the key"
+            description="Lorem ipsum dolor sit amet consectetur adipiscing elit sed diam nonumy eirmod tempor invidunt ut labore et dol consectetur adipiscing elit sed diam nonumy eirm odio et dol consectetur adipiscing elit sed diam nonumy eirm odio et dol consectetur adipis"
           />
           <Article
             index="02"
-            title="Test Title"
-            titleDesc="Test description"
-            description="Lorem ipsum dolor sit amet consectetur adipiscing elit sed diam Lorem ipsum dolor sit amet consectetur adipiscing elit sed diam Lorem ipsum dolor sit amet consectetur adipiscing elit sed diam Lorem ipsum dolor sit amet consectetur adipiscing elit sed diam"
+            title="Eco friendly"
+            titleDesc="green matters"
+            description="Lorem ipsum dolor sit amet consectetur adipiscing elit sed diam nonumy eirmod tempor invidunt ut labore et dol consectetur adipiscing elit sed diam nonumy eirm odio et dol consectetur adipiscing elit sed diam nonumy eirm odio et dol consectetur adipis"
             imageOnLeft={true}
           />
+          <Article
+            index="03"
+            title="Always best prices"
+            titleDesc="make it works"
+            description="Lorem ipsum dolor sit amet consectetur adipiscing elit sed diam nonumy eirmod tempor invidunt ut labore et dol consectetur adipiscing elit sed diam nonumy eirm odio et dol consectetur adipiscing elit sed diam nonumy eirm odio et dol consectetur adipis"
+          />
+          <div className="pb-24 md:pb-14 lg:pb-24 text-white flex flex-col md:flex-row md:w-4/5 lg:w-2/3 items-center justify-center">
+            <Link href="#">
+              <a className="w-full px-8 py-3 bg-black lg:hover:bg-gray-800 text-center shadow-xl">
+                MEN
+                <FontAwesomeIcon className="ml-2" icon={faChevronRight} />
+              </a>
+            </Link>
+            <Link href="#">
+              <a className="w-full px-8 py-3 my-8 mx-8 md:mx-14 lg:mx-24 bg-black lg:hover:bg-gray-800 text-center shadow-xl">
+                WOMEN
+                <FontAwesomeIcon className="ml-2" icon={faChevronRight} />
+              </a>
+            </Link>
+            <Link href="#">
+              <a className="w-full px-8 py-3 bg-black lg:hover:bg-gray-800 text-center shadow-xl">
+                KIDS
+                <FontAwesomeIcon className="ml-2" icon={faChevronRight} />
+              </a>
+            </Link>
+          </div>
           <h2 className="text-6xl border-t-2 border-t-orange-400 w-full md:w-4/5 text-center pb-6 pt-12 font-serif dark:text-white text-black">
             Let&apos;s keep in touch!
           </h2>

@@ -1,8 +1,11 @@
 import Image from 'next/image';
-import Img from '../public/images/articleTest.jpg';
-import Img2 from '../public/images/sale.jpg';
+import sale from '../public/images/sale.jpg';
+import eco from '../public/images/ecoFriendly.jpg';
+import materials from '../public/images/materials.jpg';
 import React, { useEffect, useState } from 'react';
 import ArticleData from './articleData';
+
+const images = [materials, eco, sale];
 
 type Props = {
   index: string;
@@ -25,7 +28,7 @@ export default function Article({ index, title, titleDesc, description, imageOnL
         <>
           <div className="w-full h-[30vh] md:h-full flex items-center justify-center 2xl:justify-end">
             <div className="w-full lg:w-4/5 2xl:w-3/5">
-              <Image className="rounded-2xl shadow" src={Img2} objectFit="cover" alt={title} />
+              <Image className="rounded-2xl shadow" src={images[parseInt(index) - 1]} objectFit="cover" alt={title} />
             </div>
           </div>
           <div className="w-full h-full flex justify-center items-center md:items-start 2xl:justify-start">
@@ -37,9 +40,9 @@ export default function Article({ index, title, titleDesc, description, imageOnL
           <div className="w-full h-full flex justify-center items-center md:items-start 2xl:justify-end">
             <ArticleData index={index} title={title} titleDesc={titleDesc} description={description} />
           </div>
-          <div className="w-full h-full flex items-center justify-center 2xl:justify-start">
+          <div className="w-full h-[30vh] md:h-full flex items-center justify-center 2xl:justify-start">
             <div className="w-full h-full lg:w-4/5 2xl:w-3/5">
-              <Image className="rounded-2xl shadow" src={Img} objectFit="cover" alt={title} />
+              <Image className="rounded-2xl shadow" src={images[parseInt(index) - 1]} objectFit="cover" alt={title} />
             </div>
           </div>
         </>
