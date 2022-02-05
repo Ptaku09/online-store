@@ -4,6 +4,7 @@ import TitleDesc from '../components/titleDesc';
 import { GetStaticProps } from 'next';
 import Article from '../components/article';
 import Newsletter from '../components/newsletter';
+import Footer from '../components/footer';
 
 export default function Home() {
   const handleScrollDown = (): void => {
@@ -15,7 +16,7 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <>
       <Head>
         <title>Online store!</title>
       </Head>
@@ -51,8 +52,11 @@ export default function Home() {
           </h2>
           <Newsletter />
         </div>
+        <div className="w-screen flex justify-center bg-black">
+          <Footer />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
