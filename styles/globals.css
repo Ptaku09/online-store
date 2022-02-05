@@ -2,19 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-    padding: 0;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@layer utilities {
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
+    ::-webkit-scrollbar {
+        display: none;
+    }
 
-* {
-    box-sizing: border-box;
+    .shadow-gradient {
+        /*background: linear-gradient(to bottom, rgba(0,0,0,0.06) 0%, rgba(55,55,55,0.49) 89%, rgba(55,55,55,0.71) 94%, rgba(55,55,55,1) 100%);*/
+        background: linear-gradient(to bottom, rgba(0,0,0,0.06) 0%, rgba(155,155,155,0.49) 89%, rgba(155,155,155,0.71) 94%, rgba(255,255,255,1) 100%);
+    }
+
+    .shadow-gradient-dark {
+        /*background: linear-gradient(to bottom, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.49) 89%, rgba(0,0,0,0.71) 94%, rgba(0,0,0,1) 100%);*/
+        background: linear-gradient(to bottom, rgba(0,0,0,0.06) 0%, rgba(55,55,55,0.49) 89%, rgba(55,55,55,0.71) 94%, rgba(55,55,55,1) 100%);
+    }
+
+    .text-border {
+        -webkit-text-stroke: 0.05rem black;
+    }
+
+    .text-border-thin {
+        text-shadow: -0.25px 0 black, 0 0.25px black, 0.25px 0 black, 0 -0.25px black;
+    }
 }
