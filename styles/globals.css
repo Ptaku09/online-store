@@ -3,6 +3,25 @@
 @tailwind utilities;
 
 @layer utilities {
+    html {
+        height: 100vh;
+    }
+
+    body:after {
+        content: "";
+        position: fixed;
+        top: 0;
+        height: 100%;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        background: url('../public/images/homeBackground.jpg');
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
     .no-scrollbar {
         -ms-overflow-style: none;
         scrollbar-width: none;
