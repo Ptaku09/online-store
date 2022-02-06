@@ -7,7 +7,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   switch (req.method) {
     case 'POST':
-      console.log('here');
       const bodyObject = JSON.parse(req.body);
       const newUser = await db.collection('users').insertOne(bodyObject);
       res.json({ status: 200, data: newUser });
