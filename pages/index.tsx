@@ -30,10 +30,9 @@ export default function Home() {
         />
       </Head>
 
-      <div className="absolute lg:fixed right-0 bottom-0 min-h-screen min-w-screen max-h-mobile-screen w-screen h-mobile-screen lg:h-screen z-[-100] m-0 bg-black bg-[url('../public/images/homeBackgroundMobile.jpg')] xs:bg-[url('../public/images/homeBackground.jpg')] bg-cover bg-no-repeat bg-center" />
-      <div className="absolute right-0 bottom-0 min-h-screen max-h-mobile-screen w-screen h-mobile-screen lg:h-screen z-[-99] m-0 shadow-gradient dark:shadow-gradient-dark" />
       <div className="h-auto min-h-full lg:min-h-screen w-screen flex justify-center items-center flex-col overflow-y-scroll no-scrollbar">
-        <div className="w-screen h-screen flex justify-center items-center flex-col">
+        <div className="w-screen h-mobile-screen lg:h-screen flex justify-center items-center flex-col bg-[url('../public/images/homeBackgroundMobile.jpg')] xs:bg-[url('../public/images/homeBackground.jpg')] bg-fixed bg-cover bg-no-repeat bg-center">
+          <div className="absolute right-0 top-0 h-mobile-screen w-screen lg:h-screen m-0 shadow-gradient dark:shadow-gradient-dark" />
           <div className="relative z-[2]">
             <TitleDesc desc="enjoy shopping" />
             <h1 className="text-white font-serif text-5xl md:text-8xl light:text-border">FVRT_STR</h1>
