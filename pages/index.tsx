@@ -24,8 +24,8 @@ export default function Home() {
         <title>Online store!</title>
       </Head>
 
-      <div className="absolute right-0 bottom-0 min-h-screen min-w-screen w-screen h-screen z-[-100] m-0 bg-black bg-[url('../public/images/homeBackgroundMobile.jpg')] xs:bg-[url('../public/images/homeBackground.jpg')] bg-cover bg-no-repeat bg-center" />
-      <div className="absolute right-0 bottom-0 min-h-screen min-w-screen w-screen h-screen z-[-99] m-0 shadow-gradient dark:shadow-gradient-dark" />
+      <div className="fixed right-0 bottom-0 min-h-screen min-w-screen max-h-screen w-screen h-screen lg:h-screen z-[-100] m-0 bg-black bg-[url('../public/images/homeBackgroundMobile.jpg')] xs:bg-[url('../public/images/homeBackground.jpg')] bg-cover bg-no-repeat bg-center" />
+      <div className="absolute right-0 bottom-0 min-h-screen max-h-screen w-screen h-screen lg:h-screen z-[-99] m-0 shadow-gradient dark:shadow-gradient-dark" />
       <div className="h-auto min-h-full lg:min-h-screen w-screen flex justify-center items-center flex-col overflow-y-scroll no-scrollbar">
         <div className="w-screen h-screen flex justify-center items-center flex-col">
           <div className="relative z-[2]">
