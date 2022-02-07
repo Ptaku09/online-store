@@ -31,7 +31,7 @@ export default function Home() {
       </Head>
 
       <div className="h-auto min-h-full lg:min-h-screen w-screen flex justify-center items-center flex-col overflow-y-scroll no-scrollbar">
-        <div className="w-screen h-mobile-screen lg:h-screen flex justify-center items-center flex-col bg-[url('../public/images/homeBackgroundMobile.jpg')] xs:bg-[url('../public/images/homeBackground.jpg')] bg-fixed bg-cover bg-no-repeat bg-center">
+        <div className="w-screen h-mobile-screen lg:h-screen flex justify-center items-center flex-col bg-[url('../public/images/homeBackgroundMobile.jpg')] xs:bg-[url('../public/images/homeBackground.jpg')] bg-scroll bg-cover bg-no-repeat bg-center">
           <div className="absolute right-0 top-0 h-mobile-screen w-screen lg:h-screen m-0 shadow-gradient dark:shadow-gradient-dark" />
           <div className="relative z-[2]">
             <TitleDesc desc="enjoy shopping" />
