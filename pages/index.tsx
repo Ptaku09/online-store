@@ -24,10 +24,10 @@ export default function Home() {
         <title>Online store!</title>
       </Head>
 
-      <div className="fixed right-0 bottom-0 min-w-full min-h-full w-auto h-auto z-[-100] m-0 bg-[url('../public/images/homeBackground.jpg')] bg-cover bg-no-repeat bg-center" />
+      <div className="fixed right-0 bottom-0 min-w-full min-h-full w-auto h-auto z-[-100] m-0 bg-black bg-[url('../public/images/homeBackgroundMobile.jpg')] xs:bg-[url('../public/images/homeBackground.jpg')] bg-cover bg-no-repeat bg-center" />
+      <div className="absolute right-0 bottom-0 min-w-full min-h-full w-auto h-auto z-[-99] m-0 shadow-gradient dark:shadow-gradient-dark" />
       <div className="h-auto min-h-full lg:min-h-screen w-screen flex justify-center items-center flex-col overflow-y-scroll no-scrollbar">
         <div className="w-screen h-screen flex justify-center items-center flex-col">
-          <div className="w-full h-full lg:h-screen absolute top-0 left-0 shadow-gradient dark:shadow-gradient-dark z-[1]" />
           <div className="relative z-[2]">
             <TitleDesc desc="enjoy shopping" />
             <h1 className="text-white font-serif text-5xl md:text-8xl light:text-border">FVRT_STR</h1>
@@ -37,7 +37,7 @@ export default function Home() {
           </div>
         </div>
         <div className="h-auto min-h-screen w-screen dark:bg-[rgba(55,55,55,1)] bg-white flex justify-start items-center flex-col pt-10 pb-10 px-16 lg:p-24 font-['Outfit']">
-          <h2 className="text-6xl font-serif dark:text-white text-black mt-24 mb-12 lg:mt-32 lg:mb-24 2xl:mt-24">Why you should choose us?</h2>
+          <h2 className="text-6xl font-serif dark:text-white text-black my-12 lg:mt-32 lg:mb-24 2xl:mt-24">Why you should choose us?</h2>
           <Article
             index="01"
             title="Premium materials"

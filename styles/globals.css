@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer utilities {
-    html, body {
+    html {
         height: 100%;
         box-sizing: border-box;
     }
