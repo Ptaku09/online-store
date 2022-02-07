@@ -17,6 +17,7 @@ const initialState: Types = {
 export default function Newsletter() {
   const [formValues, setFormValues] = useState(initialState);
   const [isOpen, setIsOpen] = useState(false);
+  const [isPending, setIsPending] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
@@ -29,6 +30,7 @@ export default function Newsletter() {
 
   const registerUser = async (event: React.SyntheticEvent) => {
     event.preventDefault();
+    setIsPending(true);
 
     const target = event.target as typeof event.target & {
       name: { value: string };
@@ -55,6 +57,7 @@ export default function Newsletter() {
       setIsOpen(true);
     }
 
+    setIsPending(false);
     setFormValues(initialState);
   };
 
@@ -63,8 +66,18 @@ export default function Newsletter() {
       <NewsletterFormField id="name" type="text" value={formValues.name} maxLength={20} onChange={handleInputChange} />
       <NewsletterFormField id="surname" type="text" value={formValues.surname} maxLength={30} onChange={handleInputChange} />
       <NewsletterFormField id="email" type="email" value={formValues.email} maxLength={40} onChange={handleInputChange} />
-      <button className="bg-orange-400 w-full lg:w-1/2 p-4 shadow rounded-lg text-white lg:hover:bg-orange-300 mt-5" type="submit">
-        SUBSCRIBE NEWSLETTER
+      <button
+        className="bg-orange-400 w-full lg:w-1/2 p-4 flex items-center justify-center shadow rounded-lg text-white lg:hover:bg-orange-300 mt-5"
+        type="submit"
+      >
+        {!isPending ? (
+          'SUBSCRIBE NEWSLETTER'
+        ) : (
+          <>
+            <svg className="animate-spin rounded-full border-4 border-white border-t-gray-500 h-5 w-5 mr-3" viewBox="0 0 24 24" />
+            PROCESSING...
+          </>
+        )}
       </button>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog

@@ -24,7 +24,8 @@ export default function Home() {
         <title>Online store!</title>
       </Head>
 
-      <div className="h-auto h-full lg:min-h-screen w-screen flex justify-center items-center flex-col overflow-y-scroll no-scrollbar">
+      <div className="fixed right-0 bottom-0 min-w-full min-h-full w-auto h-auto z-[-100] m-0 bg-[url('../public/images/homeBackground.jpg')] bg-cover bg-no-repeat bg-center" />
+      <div className="h-auto min-h-full lg:min-h-screen w-screen flex justify-center items-center flex-col overflow-y-scroll no-scrollbar">
         <div className="w-screen h-screen flex justify-center items-center flex-col">
           <div className="w-full h-full lg:h-screen absolute top-0 left-0 shadow-gradient dark:shadow-gradient-dark z-[1]" />
           <div className="relative z-[2]">
