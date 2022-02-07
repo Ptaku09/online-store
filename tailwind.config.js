@@ -8,7 +8,11 @@ module.exports = {
       xs: '475px',
       ...defaultTheme.screens,
     },
-    extend: {},
+    extend: {
+      height: {
+        'mobile-screen': 'calc(100vh + 60px)',
+      },
+    },
   },
   plugins: [],
 };
