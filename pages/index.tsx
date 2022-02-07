@@ -2,11 +2,11 @@ import Head from 'next/head';
 import React from 'react';
 import TitleDesc from '../components/titleDesc';
 import { GetStaticProps } from 'next';
-import Article from '../components/article';
-import Newsletter from '../components/newsletter';
 import Footer from '../components/footer';
-import Link from 'next/link';
+import Newsletter from '../components/newsletter';
+import Article from '../components/article';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Home() {
@@ -24,9 +24,9 @@ export default function Home() {
         <title>Online store!</title>
       </Head>
 
-      <div className="h-auto min-h-[-webkit-fill-available] lg:min-h-screen w-screen flex justify-center items-center flex-col overflow-y-scroll no-scrollbar">
-        <div className="w-screen h-screen flex justify-center items-center flex-col light:shadow-[inset_0_-100px_62px_-44px_rgba(241,241,241,1)]">
-          <div className="w-full h-full absolute top-0 left-0 shadow-gradient dark:shadow-gradient-dark z-[1]" />
+      <div className="h-auto h-full lg:min-h-screen w-screen flex justify-center items-center flex-col overflow-y-scroll no-scrollbar">
+        <div className="w-screen h-screen flex justify-center items-center flex-col">
+          <div className="w-full h-full lg:h-screen absolute top-0 left-0 shadow-gradient dark:shadow-gradient-dark z-[1]" />
           <div className="relative z-[2]">
             <TitleDesc desc="enjoy shopping" />
             <h1 className="text-white font-serif text-5xl md:text-8xl light:text-border">FVRT_STR</h1>
@@ -36,9 +36,7 @@ export default function Home() {
           </div>
         </div>
         <div className="h-auto min-h-screen w-screen dark:bg-[rgba(55,55,55,1)] bg-white flex justify-start items-center flex-col pt-10 pb-10 px-16 lg:p-24 font-['Outfit']">
-          <h2 className="text-6xl font-serif dark:text-white text-black mt-0 mb-12 xs:mb-36 md:mb-12 lg:mt-32 lg:mb-24 2xl:mt-24">
-            Why you should choose us?
-          </h2>
+          <h2 className="text-6xl font-serif dark:text-white text-black mt-24 mb-12 lg:mt-32 lg:mb-24 2xl:mt-24">Why you should choose us?</h2>
           <Article
             index="01"
             title="Premium materials"
