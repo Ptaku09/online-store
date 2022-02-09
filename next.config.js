@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   reactStrictMode: true,
+  images: {
+    domains: ['vercel.saleor.cloud'],
+  },
 };
-
-module.exports = nextConfig;

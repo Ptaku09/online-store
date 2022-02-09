@@ -9,14 +9,17 @@
     "check-types": "tsc --pretty --noEmit",
     "check-lint": "eslint . --ext ts --ext tsx --ext js",
     "format": "prettier --write .",
+    "generate-types": "graphql-codegen --config codegen.yml",
     "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build",
     "prepare": "husky install"
   },
   "dependencies": {
+    "@apollo/client": "^3.5.8",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
     "@headlessui/react": "^1.4.3",
+    "graphql": "^16.3.0",
     "mongodb": "^4.3.1",
     "next": "12.0.8",
     "next-themes": "^0.0.15",
@@ -24,6 +27,9 @@
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^2.5.0",
+    "@graphql-codegen/typescript": "^2.4.3",
+    "@graphql-codegen/typescript-operations": "^2.2.4",
     "@types/node": "17.0.10",
     "@types/react": "17.0.38",
     "autoprefixer": "^10.4.2",
