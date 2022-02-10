@@ -36,7 +36,7 @@ export default function Navbar() {
               </div>
               <div className="py-4">
                 <Menu.Item>
-                  <Link href="#">
+                  <Link href="/women">
                     <a>WOMEN</a>
                   </Link>
                 </Menu.Item>
@@ -56,7 +56,7 @@ export default function Navbar() {
           <Link href="/men">
             <a className="hover:text-orange-400">MEN</a>
           </Link>
-          <Link href="#">
+          <Link href="/women">
             <a className="hover:text-orange-400 mx-10">WOMEN</a>
           </Link>
           <Link href="#">

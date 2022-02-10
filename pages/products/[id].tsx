@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 import Head from 'next/head';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 type Props = {
   productData: Product2Fragment;
@@ -19,6 +19,7 @@ interface ParamsProps extends ParsedUrlQuery {
 
 export default function Product({ productData }: Props) {
   const [selected, setSelected] = useState('');
+  const router = useRouter();
 
   const handleAddToCart = (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -48,12 +49,13 @@ export default function Product({ productData }: Props) {
             </div>
           </div>
           <div className="lg:relative flex items-start justify-start flex-col w-full h-full pt-10 xs:p-10">
-            <Link href="/men">
-              <a className="absolute flex items-center justify-center top-16 xs:top-20 lg:top-[-2rem] mb-10 text-sm text-white bg-black py-3 px-10 rounded-xl shadow-2xl border-2 border-black focus:border-orange-400">
-                <FontAwesomeIcon className="mr-2 scale-90" icon={faChevronLeft} />
-                GO BACK
-              </a>
-            </Link>
+            <div
+              onClick={() => router.back()}
+              className="absolute flex items-center justify-center top-16 xs:top-20 lg:top-[-2rem] mb-10 text-sm text-white bg-black py-3 px-10 rounded-xl shadow-2xl border-2 border-black focus:border-orange-400 cursor-pointer"
+            >
+              <FontAwesomeIcon className="mr-2 scale-90" icon={faChevronLeft} />
+              GO BACK
+            </div>
             <h3 className="text-3xl font-thin border-b-2 xs:w-1/2 text-left pb-2">{productData.name}</h3>
             <h2 className="text-5xl font-normal my-5 font-['Outfit']">{productData.pricing?.priceRange?.stop?.gross.amount || 10} $</h2>
             <p className="font-['Outfit']">{productData.seoDescription ? productData.seoDescription : 'Enjoy best quality!'}</p>

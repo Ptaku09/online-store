@@ -68,7 +68,7 @@ export default function Home() {
                 <FontAwesomeIcon className="ml-2" icon={faChevronRight} />
               </a>
             </Link>
-            <Link href="#">
+            <Link href="/women">
               <a className="w-full px-8 py-3 my-8 mx-8 md:mx-14 lg:mx-24 bg-black lg:hover:bg-gray-800 text-center shadow-xl dark:shadow-dark">
                 WOMEN
                 <FontAwesomeIcon className="ml-2" icon={faChevronRight} />
