@@ -12474,7 +12474,10 @@ export type Product1Fragment = {
   } | null;
 };
 
-export type ProductListQueryVariables = Exact<{ [key: string]: never }>;
+export type ProductListQueryVariables = Exact<{
+  amount?: InputMaybe<Scalars['Int']>;
+  direction: OrderDirection;
+}>;
 
 export type ProductListQuery = {
   __typename?: 'Query';

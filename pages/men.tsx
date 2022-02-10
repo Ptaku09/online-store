@@ -1,4 +1,4 @@
-import { Product1Fragment } from '../graphql/types';
+import { OrderDirection, Product1Fragment } from '../graphql/types';
 import { fetchProducts } from '../graphql';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
@@ -37,7 +37,7 @@ export default function Men({ products }: Props) {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const data = await fetchProducts();
+  const data = await fetchProducts(13, OrderDirection.Asc);
   const mappedData = data.data.products?.edges.map(({ node }) => node) || [];
 
   return {

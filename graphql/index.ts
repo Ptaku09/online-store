@@ -1,5 +1,5 @@
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
-import { ProductItemQuery, ProductItemQueryVariables, ProductListQuery, ProductListQueryVariables } from './types';
+import { OrderDirection, ProductItemQuery, ProductItemQueryVariables, ProductListQuery, ProductListQueryVariables } from './types';
 
 export const client = new ApolloClient({
   uri: 'https://vercel.saleor.cloud/graphql/',
@@ -23,8 +23,8 @@ const PRODUCT_LIST_QUERY = gql`
       }
     }
   }
-  query ProductList {
-    products(channel: "default-channel", first: 13) {
+  query ProductList($amount: Int, $direction: OrderDirection!) {
+    products(channel: "default-channel", first: $amount, sortBy: { direction: $direction, field: NAME }) {
       edges {
         node {
           ...Product1
@@ -63,9 +63,10 @@ const PRODUCT_ITEM_QUERY = gql`
   }
 `;
 
-export const fetchProducts = () =>
+export const fetchProducts = (amount: number, direction: OrderDirection) =>
   client.query<ProductListQuery, ProductListQueryVariables>({
     query: PRODUCT_LIST_QUERY,
+    variables: { amount: amount, direction: direction },
   });
 
 export const fetchProductById = (id: string) =>
