@@ -19,8 +19,8 @@ export default function Newsletter() {
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, setIsPending] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement;
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const target = event.target as HTMLInputElement;
 
     setFormValues({
       ...formValues,
@@ -32,21 +32,11 @@ export default function Newsletter() {
     event.preventDefault();
     setIsPending(true);
 
-    const target = event.target as typeof event.target & {
-      name: { value: string };
-      surname: { value: string };
-      email: { value: string };
-    };
-
-    const name = target.name.value;
-    const surname = target.surname.value;
-    const email = target.email.value;
-
     const res = await fetch('/api/newsletter', {
       body: JSON.stringify({
-        name,
-        surname,
-        email,
+        name: formValues.name,
+        surname: formValues.surname,
+        email: formValues.email,
       }),
       method: 'POST',
     });

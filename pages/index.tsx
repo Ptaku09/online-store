@@ -2,7 +2,6 @@ import Head from 'next/head';
 import React from 'react';
 import TitleDesc from '../components/titleDesc';
 import { GetStaticProps } from 'next';
-import Footer from '../components/footer';
 import Newsletter from '../components/newsletter';
 import Article from '../components/article';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -31,7 +30,7 @@ export default function Home() {
       </Head>
 
       <div className="h-auto min-h-full lg:min-h-screen w-screen flex justify-center items-center flex-col overflow-y-scroll no-scrollbar">
-        <div className="w-screen h-mobile-screen lg:h-screen flex justify-center items-center flex-col bg-[url('../public/images/homeBackgroundMobile.jpg')] xs:bg-[url('../public/images/homeBackground.jpg')] bg-scroll bg-cover bg-no-repeat bg-center">
+        <div className="w-screen h-mobile-screen lg:h-screen flex justify-center items-center flex-col bg-[url('../public/images/homeBackgroundMobile.jpg')] xs:bg-[url('../public/images/homeBackground.jpg')] lg:bg-fixed bg-scroll bg-cover bg-no-repeat bg-center">
           <div className="absolute right-0 top-0 h-mobile-screen w-screen lg:h-screen m-0 shadow-gradient dark:shadow-gradient-dark" />
           <div className="relative z-[2]">
             <TitleDesc desc="enjoy shopping" />
@@ -63,20 +62,20 @@ export default function Home() {
             description="Lorem ipsum dolor sit amet consectetur adipiscing elit sed diam nonumy eirmod tempor invidunt ut labore et dol consectetur adipiscing elit sed diam nonumy eirm odio et dol consectetur adipiscing elit sed diam nonumy eirm odio et dol consectetur adipis"
           />
           <div className="pb-24 md:pb-14 lg:pb-24 text-white flex flex-col md:flex-row md:w-4/5 lg:w-2/3 items-center justify-center">
-            <Link href="#">
-              <a className="w-full px-8 py-3 bg-black lg:hover:bg-gray-800 text-center shadow-xl">
+            <Link href="/men">
+              <a className="w-full px-8 py-3 bg-black lg:hover:bg-gray-800 text-center shadow-xl dark:shadow-dark">
                 MEN
                 <FontAwesomeIcon className="ml-2" icon={faChevronRight} />
               </a>
             </Link>
-            <Link href="#">
-              <a className="w-full px-8 py-3 my-8 mx-8 md:mx-14 lg:mx-24 bg-black lg:hover:bg-gray-800 text-center shadow-xl">
+            <Link href="/women">
+              <a className="w-full px-8 py-3 my-8 mx-8 md:mx-14 lg:mx-24 bg-black lg:hover:bg-gray-800 text-center shadow-xl dark:shadow-dark">
                 WOMEN
                 <FontAwesomeIcon className="ml-2" icon={faChevronRight} />
               </a>
             </Link>
-            <Link href="#">
-              <a className="w-full px-8 py-3 bg-black lg:hover:bg-gray-800 text-center shadow-xl">
+            <Link href="/kids">
+              <a className="w-full px-8 py-3 bg-black lg:hover:bg-gray-800 text-center shadow-xl dark:shadow-dark">
                 KIDS
                 <FontAwesomeIcon className="ml-2" icon={faChevronRight} />
               </a>
@@ -86,9 +85,6 @@ export default function Home() {
             Let&apos;s keep in touch!
           </h2>
           <Newsletter />
-        </div>
-        <div className="w-screen flex justify-center bg-black">
-          <Footer />
         </div>
       </div>
     </>

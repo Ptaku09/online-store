@@ -29,21 +29,21 @@ export default function Navbar() {
             <Menu.Items className="absolute text-black text-center w-full bg-white divide-y divide-gray-200 rounded-b-md shadow-lg">
               <div className="py-4">
                 <Menu.Item>
-                  <Link href="#">
+                  <Link href="/men">
                     <a>MEN</a>
                   </Link>
                 </Menu.Item>
               </div>
               <div className="py-4">
                 <Menu.Item>
-                  <Link href="#">
+                  <Link href="/women">
                     <a>WOMEN</a>
                   </Link>
                 </Menu.Item>
               </div>
               <div className="py-4">
                 <Menu.Item>
-                  <Link href="#">
+                  <Link href="/kids">
                     <a>KIDS</a>
                   </Link>
                 </Menu.Item>
@@ -53,13 +53,13 @@ export default function Navbar() {
         </div>
       ) : (
         <>
-          <Link href="#">
+          <Link href="/men">
             <a className="hover:text-orange-400">MEN</a>
           </Link>
-          <Link href="#">
+          <Link href="/women">
             <a className="hover:text-orange-400 mx-10">WOMEN</a>
           </Link>
-          <Link href="#">
+          <Link href="/kids">
             <a className="hover:text-orange-400">KIDS</a>
           </Link>
         </>

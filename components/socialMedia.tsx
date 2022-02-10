@@ -4,7 +4,7 @@ import Instagram from '../assets/instagram-brands.svg';
 
 export default function SocialMedia() {
   return (
-    <div className="fixed top-2/3 md:top-1/3 md:bottom-1/3 z-[3] flex flex-col justify-center items-center text-orange-400">
+    <div className="fixed top-mobile-vertical xs:top-mobile-horizontal lg:top-1/3 lg:bottom-1/3 z-[3] flex flex-col justify-center items-center text-orange-400">
       <p className="rotate-90 font-['Outfit']">follow us</p>
       <a href="https://twitter.com/Ptaku09" target="_blank" rel="noreferrer" className="mt-7 mb-1">
         <Image src={Twitter.src} width={20} height={20} alt="Twitter" />
