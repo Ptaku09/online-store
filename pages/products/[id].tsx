@@ -13,6 +13,15 @@ type Props = {
   productData: Product2Fragment;
 };
 
+type ProductToAdd = {
+  id: string;
+  title: string;
+  price: number;
+  size: string;
+  quantity: number;
+  thumbnailUrl: string;
+};
+
 interface ParamsProps extends ParsedUrlQuery {
   id: string;
 }
@@ -24,7 +33,37 @@ export default function Product({ productData }: Props) {
   const handleAddToCart = (event: React.SyntheticEvent) => {
     event.preventDefault();
 
-    if (selected !== '') console.log('added: ', selected);
+    if (selected !== '' && typeof window !== 'undefined') {
+      if (!localStorage.getItem('cart-data')) localStorage.setItem('cart-data', JSON.stringify([]));
+
+      const productToAdd: ProductToAdd = {
+        id: productData.id,
+        title: productData.name,
+        price: productData.pricing?.priceRange?.stop?.gross.amount || 10,
+        size: selected,
+        quantity: 1,
+        thumbnailUrl: productData.thumbnail?.url || '',
+      };
+
+      const cartData = JSON.parse(localStorage.getItem('cart-data') || '');
+      const filteredData = cartData.filter((product: ProductToAdd) => product.id === productToAdd.id && product.size === productToAdd.size);
+
+      if (filteredData.length > 0) {
+        const updatedCartData = cartData.map((product: ProductToAdd) => {
+          return product.id === productToAdd.id
+            ? {
+                ...product,
+                quantity: (product.quantity += 1),
+              }
+            : product;
+        });
+
+        localStorage.setItem('cart-data', JSON.stringify(updatedCartData));
+      } else {
+        cartData.unshift(productToAdd);
+        localStorage.setItem('cart-data', JSON.stringify(cartData));
+      }
+    }
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => setSelected(event.target.id);
