@@ -1,6 +1,6 @@
 import { OrderDirection, Product1Fragment } from '../graphql/types';
 import Head from 'next/head';
-import Product from '../components/product';
+import Product from '../components/Product';
 import { GetStaticProps } from 'next';
 import { fetchProducts } from '../graphql';
 import React from 'react';

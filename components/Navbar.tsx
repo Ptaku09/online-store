@@ -3,7 +3,7 @@ import { faChevronDown, faMoon, faSun, faUser } from '@fortawesome/free-solid-sv
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
-import Basket from './basket';
+import Cart from './Cart';
 import { Popover } from '@headlessui/react';
 
 export default function Navbar() {
@@ -69,7 +69,7 @@ export default function Navbar() {
           <FontAwesomeIcon className="cursor-pointer" icon={faSun} onClick={() => setTheme('light')} />
         )}
         <FontAwesomeIcon className="ml-3 mr-3 cursor-pointer" icon={faUser} />
-        <Basket />
+        <Cart />
       </div>
     </header>
   );

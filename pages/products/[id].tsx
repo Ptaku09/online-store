@@ -3,23 +3,15 @@ import { getAllProductsIds, getProductById } from '../../lib/products';
 import { Product2Fragment } from '../../graphql/types';
 import { ParsedUrlQuery } from 'querystring';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { CartContext, Product as ProductToAdd } from '../../providers/CartDataProvider';
 
 type Props = {
   productData: Product2Fragment;
-};
-
-type ProductToAdd = {
-  id: string;
-  title: string;
-  price: number;
-  size: string;
-  quantity: number;
-  thumbnailUrl: string;
 };
 
 interface ParamsProps extends ParsedUrlQuery {
@@ -29,41 +21,21 @@ interface ParamsProps extends ParsedUrlQuery {
 export default function Product({ productData }: Props) {
   const [selected, setSelected] = useState('');
   const router = useRouter();
+  const { handleAddItemToCart } = useContext(CartContext);
 
   const handleAddToCart = (event: React.SyntheticEvent) => {
     event.preventDefault();
 
-    if (selected !== '' && typeof window !== 'undefined') {
-      if (!localStorage.getItem('cart-data')) localStorage.setItem('cart-data', JSON.stringify([]));
+    const productToAdd: ProductToAdd = {
+      id: productData.id,
+      title: productData.name,
+      price: productData.pricing?.priceRange?.stop?.gross.amount || 10,
+      size: selected,
+      quantity: 1,
+      thumbnailUrl: productData.thumbnail?.url || '',
+    };
 
-      const productToAdd: ProductToAdd = {
-        id: productData.id,
-        title: productData.name,
-        price: productData.pricing?.priceRange?.stop?.gross.amount || 10,
-        size: selected,
-        quantity: 1,
-        thumbnailUrl: productData.thumbnail?.url || '',
-      };
-
-      const cartData = JSON.parse(localStorage.getItem('cart-data') || '');
-      const filteredData = cartData.filter((product: ProductToAdd) => product.id === productToAdd.id && product.size === productToAdd.size);
-
-      if (filteredData.length > 0) {
-        const updatedCartData = cartData.map((product: ProductToAdd) => {
-          return product.id === productToAdd.id
-            ? {
-                ...product,
-                quantity: (product.quantity += 1),
-              }
-            : product;
-        });
-
-        localStorage.setItem('cart-data', JSON.stringify(updatedCartData));
-      } else {
-        cartData.unshift(productToAdd);
-        localStorage.setItem('cart-data', JSON.stringify(cartData));
-      }
-    }
+    handleAddItemToCart(productToAdd, selected);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => setSelected(event.target.id);

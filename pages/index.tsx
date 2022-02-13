@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import React from 'react';
-import TitleDesc from '../components/titleDesc';
+import TitleDesc from '../components/TitleDesc';
 import { GetStaticProps } from 'next';
-import Newsletter from '../components/newsletter';
-import Article from '../components/article';
+import Newsletter from '../components/Newsletter';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Article from '../components/Article';
 
 export default function Home() {
   const handleScrollDown = (): void => {

@@ -3,7 +3,7 @@ import sale from '../public/images/sale.jpg';
 import eco from '../public/images/ecoFriendly.jpg';
 import materials from '../public/images/materials.jpg';
 import React, { useEffect, useState } from 'react';
-import ArticleData from './articleData';
+import ArticleData from './ArticleData';
 
 const images = [materials, eco, sale];
 

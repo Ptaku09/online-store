@@ -1,6 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import React, { Fragment, useState } from 'react';
-import NewsletterFormField from './newsletterFromField';
+import NewsletterFormField from './NewsletterFromField';
 
 type Types = {
   name: string;
