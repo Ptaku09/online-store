@@ -3,7 +3,7 @@ import { faChevronDown, faMoon, faSun, faUser } from '@fortawesome/free-solid-sv
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
-import Cart from './Cart';
+import CartWidget from './CartWidget';
 import { Popover } from '@headlessui/react';
 
 export default function Navbar() {
@@ -28,19 +28,19 @@ export default function Navbar() {
               </Popover.Button>
             </div>
 
-            <Popover.Panel className="absolute top-8 bg-white w-screen h-auto overflow-y-auto rounded-b-md shadow-lg animate-appearing">
+            <Popover.Panel className="absolute top-8 bg-white w-screen h-auto overflow-y-auto rounded-b-md shadow-lg origin-top animate-slide-down">
               <div className="text-black text-center w-full bg-white divide-y divide-gray-200">
-                <Link href="/men">
+                <Link href="/men" passHref>
                   <div className="w-full py-4">
                     <a>MEN</a>
                   </div>
                 </Link>
-                <Link href="/women">
+                <Link href="/women" passHref>
                   <div className="w-full py-4">
                     <a>WOMEN</a>
                   </div>
                 </Link>
-                <Link href="/kids">
+                <Link href="/kids" passHref>
                   <div className="w-full py-4">
                     <a>KIDS</a>
                   </div>
@@ -69,7 +69,7 @@ export default function Navbar() {
           <FontAwesomeIcon className="cursor-pointer" icon={faSun} onClick={() => setTheme('light')} />
         )}
         <FontAwesomeIcon className="ml-3 mr-3 cursor-pointer" icon={faUser} />
-        <Cart />
+        <CartWidget />
       </div>
     </header>
   );
