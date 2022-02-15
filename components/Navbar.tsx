@@ -17,7 +17,7 @@ export default function Navbar() {
   return (
     <header className="absolute bg-black w-screen h-10 top-0 flex justify-center items-center font-['Outfit'] text-white z-10">
       <Link href="/">
-        <a className="font-bold absolute left-5">FVRT_STR</a>
+        <a className="font-bold absolute left-5 z-20">FVRT_STR</a>
       </Link>
       {screenWidth < 768 ? (
         <div className="flex flex-col w-screen">
@@ -29,22 +29,28 @@ export default function Navbar() {
             </div>
 
             <Popover.Panel className="absolute top-8 bg-white w-screen h-auto overflow-y-auto rounded-b-md shadow-lg origin-top animate-slide-down">
-              <div className="text-black text-center w-full bg-white divide-y divide-gray-200">
-                <Link href="/men" passHref>
-                  <div className="w-full py-4">
-                    <a>MEN</a>
-                  </div>
-                </Link>
-                <Link href="/women" passHref>
-                  <div className="w-full py-4">
-                    <a>WOMEN</a>
-                  </div>
-                </Link>
-                <Link href="/kids" passHref>
-                  <div className="w-full py-4">
-                    <a>KIDS</a>
-                  </div>
-                </Link>
+              <div className="text-black text-center flex flex-col w-full bg-white divide-y divide-gray-200">
+                <Popover.Button>
+                  <Link href="/men" passHref>
+                    <div className="w-full py-4">
+                      <a>MEN</a>
+                    </div>
+                  </Link>
+                </Popover.Button>
+                <Popover.Button>
+                  <Link href="/women" passHref>
+                    <div className="w-full py-4">
+                      <a>WOMEN</a>
+                    </div>
+                  </Link>
+                </Popover.Button>
+                <Popover.Button>
+                  <Link href="/kids" passHref>
+                    <div className="w-full py-4">
+                      <a>KIDS</a>
+                    </div>
+                  </Link>
+                </Popover.Button>
               </div>
             </Popover.Panel>
           </Popover>

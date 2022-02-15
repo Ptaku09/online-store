@@ -95,7 +95,7 @@ export default function Product({ productData }: Props) {
                     <input type="radio" name="sizes" id="L" checked={selected === 'L'} onChange={handleInputChange} className="peer" hidden />
                     <label
                       htmlFor="L"
-                      className="w-16 h-16 xs:w-16 xs:h-16 bg-black text-xl xs:text-2xl flex items-center justify-center rounded-xl border-2 xs:border-4 border-black cursor-pointer peer-checked:border-orange-400"
+                      className="w-16 h-16 xs:w-16 xs:h-16 bg-black text-xl xs:text-2xl flex items-center justify-center rounded-xl border-2 border-black cursor-pointer peer-checked:border-orange-400"
                     >
                       L
                     </label>
@@ -114,7 +114,7 @@ export default function Product({ productData }: Props) {
         </div>
       </>
     );
-  }, [handleAddItemToCart, selected]);
+  }, [handleAddItemToCart, selected, handleAddToCart, productData, router]);
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
