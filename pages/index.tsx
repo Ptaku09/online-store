@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import React from 'react';
-import TitleDesc from '../components/titleDesc';
+import TitleDesc from '../components/TitleDesc';
 import { GetStaticProps } from 'next';
-import Newsletter from '../components/newsletter';
-import Article from '../components/article';
+import Newsletter from '../components/Newsletter';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Article from '../components/Article';
 
 export default function Home() {
   const handleScrollDown = (): void => {
@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Online store!</title>
+        <title>FVRT_STR</title>
         <meta
           name="viewport"
           content="height=device-height,
@@ -91,7 +91,7 @@ export default function Home() {
   );
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = () => {
   return {
     props: {},
   };

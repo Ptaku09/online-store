@@ -3,7 +3,7 @@ import { fetchProducts } from '../graphql';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import React from 'react';
-import Product from '../components/product';
+import Product from '../components/Product';
 
 type Props = {
   products: Product1Fragment[];

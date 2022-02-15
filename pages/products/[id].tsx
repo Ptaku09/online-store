@@ -3,11 +3,12 @@ import { getAllProductsIds, getProductById } from '../../lib/products';
 import { Product2Fragment } from '../../graphql/types';
 import { ParsedUrlQuery } from 'querystring';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { CartContext, Product as ProductToAdd } from '../../providers/CartDataProvider';
 
 type Props = {
   productData: Product2Fragment;
@@ -20,11 +21,21 @@ interface ParamsProps extends ParsedUrlQuery {
 export default function Product({ productData }: Props) {
   const [selected, setSelected] = useState('');
   const router = useRouter();
+  const { handleAddItemToCart } = useContext(CartContext);
 
   const handleAddToCart = (event: React.SyntheticEvent) => {
     event.preventDefault();
 
-    if (selected !== '') console.log('added: ', selected);
+    const productToAdd: ProductToAdd = {
+      id: productData.id,
+      title: productData.name,
+      price: productData.pricing?.priceRange?.stop?.gross.amount || 10,
+      size: selected,
+      quantity: 1,
+      thumbnailUrl: productData.thumbnail?.url || '',
+    };
+
+    handleAddItemToCart(productToAdd, selected);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => setSelected(event.target.id);
@@ -83,7 +94,7 @@ export default function Product({ productData }: Props) {
                   <input type="radio" name="sizes" id="L" checked={selected === 'L'} onChange={handleInputChange} className="peer" hidden />
                   <label
                     htmlFor="L"
-                    className="w-16 h-16 xs:w-16 xs:h-16 bg-black text-xl xs:text-2xl flex items-center justify-center rounded-xl border-2 xs:border-4 border-black cursor-pointer peer-checked:border-orange-400"
+                    className="w-16 h-16 xs:w-16 xs:h-16 bg-black text-xl xs:text-2xl flex items-center justify-center rounded-xl border-2 border-black cursor-pointer peer-checked:border-orange-400"
                   >
                     L
                   </label>

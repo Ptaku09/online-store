@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { faChevronDown, faMoon, faShoppingBasket, faSun, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faMoon, faSun, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
-import { Menu } from '@headlessui/react';
+import CartWidget from './CartWidget';
+import { Popover } from '@headlessui/react';
 
 export default function Navbar() {
   const [screenWidth, setScreenWidth] = useState(768);
@@ -16,40 +17,43 @@ export default function Navbar() {
   return (
     <header className="absolute bg-black w-screen h-10 top-0 flex justify-center items-center font-['Outfit'] text-white z-10">
       <Link href="/">
-        <a className="font-bold absolute left-5">FVRT_STR</a>
+        <a className="font-bold absolute left-5 z-20">FVRT_STR</a>
       </Link>
       {screenWidth < 768 ? (
         <div className="flex flex-col w-screen">
-          <Menu as="div">
+          <Popover className="relative" as="div">
             <div className="flex items-center justify-center">
-              <Menu.Button className="py-2 text-white">
+              <Popover.Button>
                 SHOP <FontAwesomeIcon icon={faChevronDown} />
-              </Menu.Button>
+              </Popover.Button>
             </div>
-            <Menu.Items className="absolute text-black text-center w-full bg-white divide-y divide-gray-200 rounded-b-md shadow-lg">
-              <div className="py-4">
-                <Menu.Item>
-                  <Link href="/men">
-                    <a>MEN</a>
+
+            <Popover.Panel className="absolute top-8 bg-white w-screen h-auto overflow-y-auto rounded-b-md shadow-lg origin-top animate-slide-down">
+              <div className="text-black text-center flex flex-col w-full bg-white divide-y divide-gray-200">
+                <Popover.Button>
+                  <Link href="/men" passHref>
+                    <div className="w-full py-4">
+                      <a>MEN</a>
+                    </div>
                   </Link>
-                </Menu.Item>
-              </div>
-              <div className="py-4">
-                <Menu.Item>
-                  <Link href="/women">
-                    <a>WOMEN</a>
+                </Popover.Button>
+                <Popover.Button>
+                  <Link href="/women" passHref>
+                    <div className="w-full py-4">
+                      <a>WOMEN</a>
+                    </div>
                   </Link>
-                </Menu.Item>
-              </div>
-              <div className="py-4">
-                <Menu.Item>
-                  <Link href="/kids">
-                    <a>KIDS</a>
+                </Popover.Button>
+                <Popover.Button>
+                  <Link href="/kids" passHref>
+                    <div className="w-full py-4">
+                      <a>KIDS</a>
+                    </div>
                   </Link>
-                </Menu.Item>
+                </Popover.Button>
               </div>
-            </Menu.Items>
-          </Menu>
+            </Popover.Panel>
+          </Popover>
         </div>
       ) : (
         <>
@@ -71,7 +75,7 @@ export default function Navbar() {
           <FontAwesomeIcon className="cursor-pointer" icon={faSun} onClick={() => setTheme('light')} />
         )}
         <FontAwesomeIcon className="ml-3 mr-3 cursor-pointer" icon={faUser} />
-        <FontAwesomeIcon className="cursor-pointer" icon={faShoppingBasket} />
+        <CartWidget />
       </div>
     </header>
   );

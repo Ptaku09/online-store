@@ -28,9 +28,19 @@ module.exports = {
             opacity: 1,
           },
         },
+        'slide-down': {
+          '0%': {
+            transform: 'scaleY(0)',
+          },
+          '100%': {
+            transform: 'scaleY(1)',
+          },
+        },
       },
       animation: {
         appearing: 'appear 0.5s ease-in-out',
+        'appearing-short': 'appear 0.35s ease-in-out',
+        'slide-down': 'slide-down 0.35s ease-in-out',
       },
     },
   },

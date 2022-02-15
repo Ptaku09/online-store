@@ -1,4 +1,4 @@
-import TitleDesc from './titleDesc';
+import TitleDesc from './TitleDesc';
 import React from 'react';
 
 type Props = {
