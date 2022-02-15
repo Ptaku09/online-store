@@ -28,7 +28,7 @@ export default function Navbar() {
               </Popover.Button>
             </div>
 
-            <Popover.Panel className="absolute top-8 bg-white w-screen h-auto overflow-y-auto rounded-b-md shadow-lg origin-top animate-slide-down">
+            <Popover.Panel className="absolute top-8 bg-white w-screen h-auto overflow-y-auto rounded-b-md shadow-lg">
               <div className="text-black text-center flex flex-col w-full bg-white divide-y divide-gray-200">
                 <Popover.Button>
                   <Link href="/men" passHref>
