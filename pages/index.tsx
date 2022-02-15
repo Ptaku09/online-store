@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Online store!</title>
+        <title>FVRT_STR</title>
         <meta
           name="viewport"
           content="height=device-height,

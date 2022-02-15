@@ -114,7 +114,7 @@ export default function Product({ productData }: Props) {
         </div>
       </>
     );
-  }, [handleAddItemToCart, selected, handleAddToCart, productData, router]);
+  }, [selected, handleAddToCart, productData, router]);
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
