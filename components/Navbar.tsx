@@ -15,7 +15,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="absolute bg-black w-screen h-10 top-0 flex justify-center items-center font-['Outfit'] text-white z-10">
+    <header className="fixed bg-black w-screen h-10 top-0 flex justify-center items-center font-['Outfit'] text-white z-10">
       <Link href="/">
         <a className="font-bold absolute left-5 z-20">FVRT_STR</a>
       </Link>
