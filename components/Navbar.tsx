@@ -74,7 +74,11 @@ export default function Navbar() {
         ) : (
           <FontAwesomeIcon className="cursor-pointer" icon={faSun} onClick={() => setTheme('light')} />
         )}
-        <FontAwesomeIcon className="ml-3 mr-3 cursor-pointer" icon={faUser} />
+        <Link href="/signin">
+          <a>
+            <FontAwesomeIcon className="ml-3 mr-3 cursor-pointer" icon={faUser} />
+          </a>
+        </Link>
         <CartWidget />
       </div>
     </header>

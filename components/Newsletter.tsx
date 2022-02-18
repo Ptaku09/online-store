@@ -1,32 +1,18 @@
 import { Dialog, Transition } from '@headlessui/react';
 import React, { Fragment, useState } from 'react';
 import NewsletterFormField from './NewsletterFromField';
+import useForm, { InitialStateTypes } from '../hooks/useForm';
 
-type Types = {
-  name: string;
-  surname: string;
-  email: string;
-};
-
-const initialState: Types = {
+const initialState: InitialStateTypes = {
   name: '',
   surname: '',
   email: '',
 };
 
 export default function Newsletter() {
-  const [formValues, setFormValues] = useState(initialState);
+  const { formValues, setFormValues, handleInputChange } = useForm(initialState);
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, setIsPending] = useState(false);
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const target = event.target as HTMLInputElement;
-
-    setFormValues({
-      ...formValues,
-      [target.name]: target.value,
-    });
-  };
 
   const registerUser = async (event: React.SyntheticEvent) => {
     event.preventDefault();
