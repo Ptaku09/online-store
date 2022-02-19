@@ -39,8 +39,8 @@ export default function Newsletter() {
 
   return (
     <form className="w-full md:w-2/3 lg:w-1/2 flex items-center justify-center flex-col text-['Outfit'] p-2 2xl:px-32" onSubmit={registerUser}>
-      <NewsletterFormField id="name" type="text" value={formValues.name} maxLength={20} onChange={handleInputChange} />
-      <NewsletterFormField id="surname" type="text" value={formValues.surname} maxLength={30} onChange={handleInputChange} />
+      <NewsletterFormField id="name" type="text" value={formValues.name || ''} maxLength={20} onChange={handleInputChange} />
+      <NewsletterFormField id="surname" type="text" value={formValues.surname || ''} maxLength={30} onChange={handleInputChange} />
       <NewsletterFormField id="email" type="email" value={formValues.email} maxLength={40} onChange={handleInputChange} />
       <button
         className="bg-orange-400 w-full lg:w-1/2 p-4 flex items-center justify-center shadow rounded-lg text-white lg:hover:bg-orange-300 mt-5"

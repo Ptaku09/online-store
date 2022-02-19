@@ -9,13 +9,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const accountExisted = await findUserByEmail(email);
 
       if (accountExisted) {
-        return res.status(409).send('The email has already been used');
+        return res.status(409).json({ text: 'The email has already been used!' });
       }
 
       const user = { email, password, name, surname };
 
       createUser(user)
-        .then(() => res.status(200).json({ user }))
+        .then(() => res.status(200).json({ text: 'Success!' }))
         .catch((e) => res.status(400).send(e));
 
       break;
