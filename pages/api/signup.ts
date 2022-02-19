@@ -14,9 +14,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const user = { email, password, name, surname };
 
-      createUser(user)
-        .then(() => res.status(200).json({ text: 'Success!' }))
-        .catch((e) => res.status(400).send(e));
+      try {
+        await createUser(user);
+        res.status(200).json({ text: 'Success!' });
+      } catch (err) {
+        res.status(400).json(err);
+      }
 
       break;
   }

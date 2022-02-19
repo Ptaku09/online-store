@@ -6,6 +6,7 @@ import Google from '../assets/google-brands.svg';
 import Link from 'next/link';
 import FormField from '../components/FormField';
 import useForm from '../hooks/useForm';
+import { useRouter } from 'next/router';
 
 const initialState = {
   name: '',
@@ -28,28 +29,30 @@ export default function SignUp() {
   const [passwords, setPasswords] = useState(passwordsInitialState);
   const [validationStatus, setValidationStatus] = useState(validationInitialState);
   const [isDisabled, setDisabled] = useState(true);
+  const [message, setMessage] = useState('');
   const { formValues, setFormValues, handleInputChange } = useForm(initialState);
-
-  const checkPassword = () => {
-    let characters = false;
-    let digit = false;
-    let capital = false;
-
-    if (passwords.current.length >= 8) characters = true;
-    if (/[A-Z]/.test(passwords.current)) capital = true;
-    if (/\d/.test(passwords.current)) digit = true;
-
-    setValidationStatus({
-      characters,
-      digit,
-      capital,
-    });
-
-    return characters && digit && capital;
-  };
+  const router = useRouter();
 
   useEffect(() => {
     //password security validation
+    const checkPassword = () => {
+      let characters = false;
+      let digit = false;
+      let capital = false;
+
+      if (passwords.current.length >= 8) characters = true;
+      if (/[A-Z]/.test(passwords.current)) capital = true;
+      if (/\d/.test(passwords.current)) digit = true;
+
+      setValidationStatus({
+        characters,
+        digit,
+        capital,
+      });
+
+      return characters && digit && capital;
+    };
+
     checkPassword() && passwords.current === passwords.repeated ? setDisabled(false) : setDisabled(true);
   }, [passwords]);
 
@@ -65,7 +68,7 @@ export default function SignUp() {
   const handleSignUp = async (event: React.SyntheticEvent) => {
     event.preventDefault();
 
-    const res = fetch('/api/signup', {
+    const res = await fetch('/api/signup', {
       body: JSON.stringify({
         email: formValues.email,
         password: passwords.current,
@@ -75,16 +78,29 @@ export default function SignUp() {
       method: 'POST',
     });
 
-    setFormValues(initialState);
-    setPasswords(passwordsInitialState);
+    switch (res.status) {
+      case 200:
+        setFormValues(initialState);
+        setPasswords(passwordsInitialState);
+        await router.push('/signin');
+        break;
+
+      case 409:
+        setMessage('The email is already associated with an account!');
+        break;
+
+      default:
+        setMessage('Something went wrong. Try again later.');
+        break;
+    }
   };
 
   return (
-    <div className="w-screen h-mobile-screen xs:h-auto flex items-center justify-center px-14 py-20">
-      <div className="bg-[url('../public/images/signup.jpg')] bg-cover flex justify-center w-full lg:w-4/5 h-auto lg:h-full bg-white rounded-lg shadow-2xl dark:shadow-dark">
-        <div className="relative flex items-center justify-center flex-col p-5 font-['Outfit'] text-black bg-white bg-opacity-80 w-1/2 shadow-lg">
+    <div className="w-screen h-mobile-screen h-auto flex items-center justify-center px-14 py-20">
+      <div className="lg:bg-[url('../public/images/signup.jpg')] lg:bg-cover flex justify-center w-full lg:w-4/5 h-auto lg:h-full rounded-lg bg-white shadow-2xl dark:shadow-dark">
+        <div className="relative flex items-center justify-center flex-col p-5 font-['Outfit'] text-black bg-white rounded-lg lg:rounded-none lg:bg-opacity-80 w-full lg:w-1/2 shadow-lg">
           <p className="text-4xl lg:absolute top-8 mx-auto border-b-2 border-b-black px-7 pb-4">Sign up!</p>
-          <form className="flex flex-col items-center mt-5 pt-32 w-7/12 lg:mt-0" onSubmit={handleSignUp}>
+          <form className="flex flex-col items-center mt-5 pt-6 lg:pt-32 w-full xs:w-7/12 lg:mt-0" onSubmit={handleSignUp}>
             <FormField id="name" type="text" value={formValues.name || ''} maxLength={40} onChange={handleInputChange} />
             <FormField id="surname" type="text" value={formValues.surname || ''} maxLength={40} onChange={handleInputChange} />
             <FormField id="email" type="email" value={formValues.email} maxLength={40} onChange={handleInputChange} />
@@ -115,6 +131,7 @@ export default function SignUp() {
               onChange={handlePasswordInputChange}
               required
             />
+            {message ? <p className="text-red-700 text-sm xs:text-xl mb-3 text-center">{message}</p> : null}
             <button
               className="bg-orange-400 text-white shadow-xl lg:hover:bg-orange-300 lg:disabled:hover:bg-orange-400 lg:disabled:hover:bg-opacity-50 disabled:bg-opacity-50 w-2/3 py-2 rounded-md"
               disabled={isDisabled}
