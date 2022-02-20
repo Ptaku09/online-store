@@ -7,6 +7,7 @@ import { findUserByEmail, validatePassword } from '../../../lib/auth';
 
 export default NextAuth({
   adapter: MongoDBAdapter(clientPromise),
+  secret: process.env.NEXT_AUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -24,7 +25,8 @@ export default NextAuth({
         const isValid = await validatePassword(user, credentials?.password);
 
         if (!isValid) {
-          throw new Error('Wrong password or email');
+          // throw new Error('Wrong password or email');
+          return null;
         }
 
         return {

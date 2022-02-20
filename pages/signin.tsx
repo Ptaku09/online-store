@@ -1,11 +1,12 @@
 import { GetServerSideProps } from 'next';
-import { signIn, useSession } from 'next-auth/react';
-import React from 'react';
+import { getSession, signIn } from 'next-auth/react';
+import React, { useState } from 'react';
 import FormField from '../components/FormField';
 import useForm from '../hooks/useForm';
 import Google from '../assets/google-brands.svg';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const initialState = {
   email: '',
@@ -13,8 +14,9 @@ const initialState = {
 };
 
 export default function SignIn() {
-  const { data: session } = useSession();
   const { formValues, setFormValues, handleInputChange } = useForm(initialState);
+  const [message, setMessage] = useState('');
+  const router = useRouter();
 
   const handleSignIn = async (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -25,7 +27,12 @@ export default function SignIn() {
       password: formValues.password,
     });
 
-    setFormValues(initialState);
+    if (await getSession()) {
+      setFormValues(initialState);
+      await router.push('/');
+    } else {
+      setMessage('Wrong credentials');
+    }
   };
 
   return (
@@ -37,6 +44,7 @@ export default function SignIn() {
           <form className="flex flex-col items-center mt-5 lg:mt-0" onSubmit={handleSignIn}>
             <FormField id="email" type="email" value={formValues.email} maxLength={40} onChange={handleInputChange} />
             <FormField id="password" type="password" value={formValues.password || ''} maxLength={40} onChange={handleInputChange} />
+            {message ? <p className="text-red-700 text-sm xs:text-xl mb-3 text-center">{message}</p> : null}
             <button className="bg-orange-400 text-white shadow-xl lg:hover:bg-orange-300 w-2/3 py-2 rounded-md">Login</button>
           </form>
           <button
@@ -59,6 +67,17 @@ export default function SignIn() {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: {},
   };

@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next';
 import React, { useEffect, useState } from 'react';
-import { signIn } from 'next-auth/react';
+import { getSession, signIn } from 'next-auth/react';
 import Image from 'next/image';
 import Google from '../assets/google-brands.svg';
 import Link from 'next/link';
@@ -160,6 +160,17 @@ export default function SignUp() {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: {},
   };
