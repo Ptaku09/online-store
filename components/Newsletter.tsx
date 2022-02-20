@@ -1,32 +1,18 @@
 import { Dialog, Transition } from '@headlessui/react';
 import React, { Fragment, useState } from 'react';
 import NewsletterFormField from './NewsletterFromField';
+import useForm, { InitialStateTypes } from '../hooks/useForm';
 
-type Types = {
-  name: string;
-  surname: string;
-  email: string;
-};
-
-const initialState: Types = {
+const initialState: InitialStateTypes = {
   name: '',
   surname: '',
   email: '',
 };
 
 export default function Newsletter() {
-  const [formValues, setFormValues] = useState(initialState);
+  const { formValues, setFormValues, handleInputChange } = useForm(initialState);
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, setIsPending] = useState(false);
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const target = event.target as HTMLInputElement;
-
-    setFormValues({
-      ...formValues,
-      [target.name]: target.value,
-    });
-  };
 
   const registerUser = async (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -53,8 +39,8 @@ export default function Newsletter() {
 
   return (
     <form className="w-full md:w-2/3 lg:w-1/2 flex items-center justify-center flex-col text-['Outfit'] p-2 2xl:px-32" onSubmit={registerUser}>
-      <NewsletterFormField id="name" type="text" value={formValues.name} maxLength={20} onChange={handleInputChange} />
-      <NewsletterFormField id="surname" type="text" value={formValues.surname} maxLength={30} onChange={handleInputChange} />
+      <NewsletterFormField id="name" type="text" value={formValues.name || ''} maxLength={20} onChange={handleInputChange} />
+      <NewsletterFormField id="surname" type="text" value={formValues.surname || ''} maxLength={30} onChange={handleInputChange} />
       <NewsletterFormField id="email" type="email" value={formValues.email} maxLength={40} onChange={handleInputChange} />
       <button
         className="bg-orange-400 w-full lg:w-1/2 p-4 flex items-center justify-center shadow rounded-lg text-white lg:hover:bg-orange-300 mt-5"

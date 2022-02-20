@@ -11,10 +11,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const newUser = await db.collection('users').insertOne(bodyObject);
       res.json({ status: 200, data: newUser });
       break;
-
-    case 'GET':
-      const users = await db.collection('users').find({}).toArray();
-      res.status(200).json({ data: users });
-      break;
   }
 }
