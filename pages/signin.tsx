@@ -17,9 +17,11 @@ export default function SignIn() {
   const { formValues, setFormValues, handleInputChange } = useForm(initialState);
   const [message, setMessage] = useState('');
   const router = useRouter();
+  const [isPending, setIsPending] = useState(false);
 
   const handleSignIn = async (event: React.SyntheticEvent) => {
     event.preventDefault();
+    setIsPending(true);
 
     await signIn('credentials', {
       redirect: false,
@@ -29,8 +31,10 @@ export default function SignIn() {
 
     if (await getSession()) {
       setFormValues(initialState);
+      setIsPending(false);
       await router.push('/user');
     } else {
+      setIsPending(false);
       setMessage('Wrong credentials');
     }
   };
@@ -45,7 +49,16 @@ export default function SignIn() {
             <FormField id="email" type="email" value={formValues.email} maxLength={40} onChange={handleInputChange} />
             <FormField id="password" type="password" value={formValues.password || ''} maxLength={40} onChange={handleInputChange} />
             {message ? <p className="text-red-700 text-sm xs:text-xl mb-3 text-center">{message}</p> : null}
-            <button className="bg-orange-400 text-white shadow-xl lg:hover:bg-orange-300 w-2/3 py-2 rounded-md">Login</button>
+            <button className="bg-orange-400 text-white shadow-xl lg:hover:bg-orange-300 w-2/3 py-2 rounded-md">
+              {!isPending ? (
+                'Log in'
+              ) : (
+                <>
+                  <svg className="animate-spin rounded-full border-4 border-white border-t-gray-500 h-5 w-5 mr-3" viewBox="0 0 24 24" />
+                  PROCESSING...
+                </>
+              )}
+            </button>
           </form>
           <button
             className="text-md mt-10 border-2 py-3 px-5 flex items-center justify-center gap-3 lg:hover:bg-gray-200"

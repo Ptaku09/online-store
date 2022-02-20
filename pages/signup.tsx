@@ -31,6 +31,7 @@ export default function SignUp() {
   const [isDisabled, setDisabled] = useState(true);
   const [message, setMessage] = useState('');
   const { formValues, setFormValues, handleInputChange } = useForm(initialState);
+  const [isPending, setIsPending] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -67,6 +68,7 @@ export default function SignUp() {
 
   const handleSignUp = async (event: React.SyntheticEvent) => {
     event.preventDefault();
+    setIsPending(true);
 
     const res = await fetch('/api/signup', {
       body: JSON.stringify({
@@ -82,14 +84,17 @@ export default function SignUp() {
       case 200:
         setFormValues(initialState);
         setPasswords(passwordsInitialState);
+        setIsPending(false);
         await router.push('/signin');
         break;
 
       case 409:
+        setIsPending(false);
         setMessage('The email is already associated with an account!');
         break;
 
       default:
+        setIsPending(false);
         setMessage('Something went wrong. Try again later.');
         break;
     }
@@ -136,7 +141,14 @@ export default function SignUp() {
               className="bg-orange-400 text-white shadow-xl lg:hover:bg-orange-300 lg:disabled:hover:bg-orange-400 lg:disabled:hover:bg-opacity-50 disabled:bg-opacity-50 w-2/3 py-2 rounded-md"
               disabled={isDisabled}
             >
-              Register
+              {!isPending ? (
+                'Register'
+              ) : (
+                <>
+                  <svg className="animate-spin rounded-full border-4 border-white border-t-gray-500 h-5 w-5 mr-3" viewBox="0 0 24 24" />
+                  PROCESSING...
+                </>
+              )}
             </button>
           </form>
           <p className="mt-5">or...</p>
