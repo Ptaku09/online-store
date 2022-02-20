@@ -96,8 +96,8 @@ export default function SignUp() {
   };
 
   return (
-    <div className="w-screen h-mobile-screen h-auto flex items-center justify-center px-14 py-20">
-      <div className="lg:bg-[url('../public/images/signup.jpg')] lg:bg-cover flex justify-center w-full lg:w-4/5 h-auto lg:h-full rounded-lg bg-white shadow-2xl dark:shadow-dark">
+    <div className="w-screen min-h-mobile-screen lg:min-h-screen h-auto flex items-center justify-center px-14 py-20">
+      <div className="lg:bg-[url('../public/images/signup.jpg')] lg:bg-cover flex justify-center w-full lg:w-4/5 h-auto rounded-lg bg-white shadow-2xl dark:shadow-dark">
         <div className="relative flex items-center justify-center flex-col p-5 font-['Outfit'] text-black bg-white rounded-lg lg:rounded-none lg:bg-opacity-80 w-full lg:w-1/2 shadow-lg">
           <p className="text-4xl lg:absolute top-8 mx-auto border-b-2 border-b-black px-7 pb-4">Sign up!</p>
           <form className="flex flex-col items-center mt-5 pt-6 lg:pt-32 w-full xs:w-7/12 lg:mt-0" onSubmit={handleSignUp}>
@@ -165,7 +165,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (session) {
     return {
       redirect: {
-        destination: '/',
+        destination: '/user',
         permanent: false,
       },
     };

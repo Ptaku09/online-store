@@ -29,7 +29,7 @@ export default function SignIn() {
 
     if (await getSession()) {
       setFormValues(initialState);
-      await router.push('/');
+      await router.push('/user');
     } else {
       setMessage('Wrong credentials');
     }
@@ -72,7 +72,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (session) {
     return {
       redirect: {
-        destination: '/',
+        destination: '/user',
         permanent: false,
       },
     };
