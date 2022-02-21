@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 import { v4 as uuidv4 } from 'uuid';
 import clientPromise from './mongodb';
-import { Document, WithId } from 'mongodb';
+import { Document, ObjectId, WithId } from 'mongodb';
 
 type User = {
   email: string;
@@ -36,11 +36,15 @@ export const findUserByEmail = async (email: string | undefined) => {
   return await db.collection('users').findOne({ email });
 };
 
-export const deleteUser = async (email: string) => {
+export const deleteUserById = async (id: string) => {
   const client = await clientPromise;
-  const db = client.db(process.env.DB_NAME_USERS);
+  const dbGoogle = client.db(process.env.DB_NAME_USERS_GOOGLE);
+  const dbEmail = client.db(process.env.DB_NAME_USERS);
+  const uid = new ObjectId(id);
 
-  await db.collection('users').deleteOne({ email });
+  await dbGoogle.collection('accounts').deleteOne({ userId: uid });
+  await dbGoogle.collection('users').deleteOne({ _id: uid });
+  await dbEmail.collection('users').deleteOne({ _id: uid });
 };
 
 export const validatePassword = async (user: WithId<Document>, inputPassword: string | undefined) => {
