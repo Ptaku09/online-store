@@ -3,6 +3,7 @@ import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
 import DeleteUser from '../components/userMenu/DeleteUser';
+import Orders from '../components/userMenu/Orders';
 
 export default function User() {
   const { data: session } = useSession();
@@ -33,7 +34,7 @@ export default function User() {
         />
       </Head>
 
-      <div className="w-screen h-screen lg:grid lg:grid-cols-[1fr_5fr] font-['Outfit'] p-20 text-2xl dark:bg-[rgba(55,55,55,1)]">
+      <div className="w-screen min-h-screen lg:h-screen lg:grid lg:grid-cols-[1fr_5fr] font-['Outfit'] p-20 text-2xl dark:bg-[rgba(55,55,55,1)]">
         {screenWidth > 1024 ? (
           <div className="flex items-start justify-start flex-col w-full h-full border-r-[1px] border-black dark:border-white">
             <h1 className="text-4xl border-b-[1px] pb-3 pr-9 border-black dark:border-white">
@@ -230,8 +231,8 @@ export default function User() {
             </div>
           </>
         )}
-        <div className="w-full flex items-center justify-center lg:pl-14 overflow-y-auto">
-          {selected === 'orders' ? <p>orders</p> : selected === 'returns' ? <p>returns</p> : selected === 'info' ? <p>info</p> : <DeleteUser />}
+        <div className="w-full flex items-start justify-center lg:pl-14 overflow-y-auto">
+          {selected === 'orders' ? <Orders /> : selected === 'returns' ? <p>returns</p> : selected === 'info' ? <p>info</p> : <DeleteUser />}
         </div>
       </div>
     </>

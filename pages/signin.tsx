@@ -26,8 +26,8 @@ export default function SignIn() {
 
     await signIn('credentials', {
       redirect: false,
-      email: formValues.email,
-      password: formValues.password,
+      email: formValues.email.trim(),
+      password: formValues.password?.trim(),
     });
 
     if (await getSession()) {

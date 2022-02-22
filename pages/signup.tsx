@@ -73,10 +73,10 @@ export default function SignUp() {
 
     const res = await fetch('/api/signup', {
       body: JSON.stringify({
-        email: formValues.email,
-        password: passwords.current,
-        name: formValues.name,
-        surname: formValues.surname,
+        email: formValues.email.trim(),
+        password: passwords.current.trim(),
+        name: formValues.name?.trim(),
+        surname: formValues.surname?.trim(),
       }),
       method: 'POST',
     });
