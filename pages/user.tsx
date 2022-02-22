@@ -2,8 +2,9 @@ import { getSession, signOut, useSession } from 'next-auth/react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
-import DeleteUser from '../components/userMenu/DeleteUser';
+import DeleteAccount from '../components/userMenu/DeleteAccount';
 import Orders from '../components/userMenu/Orders';
+import Returns from '../components/userMenu/Returns';
 
 export default function User() {
   const { data: session } = useSession();
@@ -232,7 +233,7 @@ export default function User() {
           </>
         )}
         <div className="w-full flex items-start justify-center lg:pl-14 overflow-y-auto">
-          {selected === 'orders' ? <Orders /> : selected === 'returns' ? <p>returns</p> : selected === 'info' ? <p>info</p> : <DeleteUser />}
+          {selected === 'orders' ? <Orders /> : selected === 'returns' ? <Returns /> : selected === 'info' ? <p>info</p> : <DeleteAccount />}
         </div>
       </div>
     </>

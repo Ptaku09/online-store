@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { getSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
-export default function DeleteUser() {
+export default function DeleteAccount() {
   const [isDisabled, setDisabled] = useState(true);
   const [isPending, setIsPending] = useState(false);
   const [message, setMessage] = useState('');
