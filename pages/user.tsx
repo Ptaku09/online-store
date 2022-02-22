@@ -143,7 +143,7 @@ export default function User() {
               />
             </button>
             <div
-              className={`fixed top-0 left-0 z-20 w-full h-full flex flex-col items-center justify-around bg-white dark:bg-black dark:text-white text-black bg-opacity-100 transition duration-300 ${
+              className={`fixed top-0 left-0 z-20 w-full h-full flex flex-col xs:flex-row items-center justify-around bg-white dark:bg-black dark:text-white text-black bg-opacity-100 transition duration-300 ${
                 isOpen ? 'translate-x-0' : 'translate-x-[-100vw]'
               }`}
             >
