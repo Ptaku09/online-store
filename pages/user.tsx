@@ -5,8 +5,20 @@ import React, { useEffect, useState } from 'react';
 import DeleteAccount from '../components/userMenu/DeleteAccount';
 import Orders from '../components/userMenu/Orders';
 import Returns from '../components/userMenu/Returns';
+import AccountInformation from '../components/userMenu/AccountInformation';
 
-export default function User() {
+interface UserProps {
+  name: string;
+  email: string;
+  image?: string;
+  id: string;
+}
+
+export type User = {
+  user: UserProps;
+};
+
+export default function User({ user }: User) {
   const { data: session } = useSession();
   const [selected, setSelected] = useState('orders');
   const [screenWidth, setScreenWidth] = useState(768);
@@ -233,7 +245,15 @@ export default function User() {
           </>
         )}
         <div className="w-full flex items-start justify-center lg:pl-14 overflow-y-auto">
-          {selected === 'orders' ? <Orders /> : selected === 'returns' ? <Returns /> : selected === 'info' ? <p>info</p> : <DeleteAccount />}
+          {selected === 'orders' ? (
+            <Orders />
+          ) : selected === 'returns' ? (
+            <Returns />
+          ) : selected === 'info' ? (
+            <AccountInformation user={user} />
+          ) : (
+            <DeleteAccount />
+          )}
         </div>
       </div>
     </>
@@ -253,6 +273,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   return {
-    props: {},
+    props: {
+      user: session.user,
+    },
   };
 };

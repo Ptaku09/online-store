@@ -47,6 +47,16 @@ export const deleteUserById = async (id: string) => {
   await dbEmail.collection('users').deleteOne({ _id: uid });
 };
 
+export const updateUserById = async (id: string, name: string, email: string) => {
+  const client = await clientPromise;
+  const dbGoogle = client.db(process.env.DB_NAME_USERS_GOOGLE);
+  const dbEmail = client.db(process.env.DB_NAME_USERS);
+  const uid = new ObjectId(id);
+
+  await dbGoogle.collection('users').findOneAndUpdate({ _id: uid }, { $set: { name, email } });
+  await dbEmail.collection('users').findOneAndUpdate({ _id: uid }, { $set: { name, email } });
+};
+
 export const validatePassword = async (user: WithId<Document>, inputPassword: string | undefined) => {
   const inputHash = crypto.pbkdf2Sync(inputPassword || '', user.salt, 1000, 64, 'sha512').toString('hex');
 

@@ -29,9 +29,10 @@ export default function Footer() {
           </div>
           <div className="text-sm">
             <h5 className="md:mb-4">MY ACCOUNT</h5>
-            <p>Account</p>
             <p>Orders</p>
-            <p>Settings</p>
+            <p>Returns</p>
+            <p>Account information</p>
+            <p>Delete account</p>
           </div>
         </div>
       </div>

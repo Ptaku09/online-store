@@ -150,7 +150,7 @@ export default function SignUp() {
               />
               {message ? <p className="text-red-700 text-sm xs:text-xl mb-3 text-center">{message}</p> : null}
               <button
-                className="bg-orange-400 text-white shadow-xl lg:hover:bg-orange-300 lg:disabled:hover:bg-orange-400 lg:disabled:hover:bg-opacity-50 disabled:bg-opacity-50 lg:disabled:cursor-not-allowed w-2/3 py-2 rounded-md"
+                className="flex items-center justify-center bg-orange-400 text-white shadow-xl lg:hover:bg-orange-300 lg:disabled:hover:bg-orange-400 lg:disabled:hover:bg-opacity-50 disabled:bg-opacity-50 lg:disabled:cursor-not-allowed w-2/3 py-2 rounded-md"
                 disabled={isDisabled}
               >
                 {!isPending ? (

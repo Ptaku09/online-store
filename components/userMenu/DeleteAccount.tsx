@@ -16,7 +16,7 @@ export default function DeleteAccount() {
 
     const res = await fetch('/api/deleteAccount', {
       body: JSON.stringify({
-        token: token,
+        token,
       }),
       method: 'DELETE',
     });
@@ -43,7 +43,7 @@ export default function DeleteAccount() {
         </span>
         {message ? <p className="text-red-700 text-xl mt-5 text-center">{message}</p> : null}
         <button
-          className="px-10 py-5 mt-5 bg-orange-400 disabled:text-opacity-50 text-white text-xl xs:text-2xl shadow-xl lg:hover:bg-orange-300 lg:disabled:hover:bg-orange-400 lg:disabled:hover:bg-opacity-50 disabled:bg-opacity-50 lg:disabled:cursor-not-allowed rounded-md"
+          className="flex items-center justify-center w-full py-5 mt-5 bg-orange-400 disabled:text-opacity-50 text-white text-xl xs:text-2xl shadow-xl lg:hover:bg-orange-300 lg:disabled:hover:bg-orange-400 lg:disabled:hover:bg-opacity-50 disabled:bg-opacity-50 lg:disabled:cursor-not-allowed rounded-md"
           disabled={isDisabled}
         >
           {!isPending ? (
