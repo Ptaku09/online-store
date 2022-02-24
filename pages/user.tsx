@@ -36,7 +36,7 @@ export default function User() {
         />
       </Head>
 
-      <div className="w-screen min-h-screen lg:h-screen lg:grid lg:grid-cols-[1fr_5fr] font-['Outfit'] p-20 text-2xl dark:bg-[rgba(55,55,55,1)]">
+      <div className="w-screen min-h-screen lg:h-screen lg:grid lg:grid-cols-[1fr_5fr] font-['Outfit'] px-14 py-20 lg:px-20 text-2xl dark:bg-[rgba(55,55,55,1)]">
         {screenWidth > 1024 ? (
           <div className="flex items-start justify-start flex-col w-full h-full border-r-[1px] border-black dark:border-white">
             <h1 className="text-4xl border-b-[1px] pb-3 pr-9 border-black dark:border-white">

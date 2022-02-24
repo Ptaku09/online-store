@@ -93,12 +93,14 @@ export default function AccountInformation() {
 
   return (
     <div className="w-full h-auto min-h-full flex flex-col items-center justify-start lg:animate-appearing-short">
-      <h1 className="text-5xl text-center">Change your account information</h1>
-      <div className={`mt-16 ${session?.user.provider === 'credentials' ? 'grid grid-cols-2' : 'flex items-center'} w-full`}>
+      <h1 className="text-4xl xs:text-5xl text-center">Change your account information</h1>
+      <div className={`mt-16 ${session?.user.provider === 'credentials' ? 'lg:grid lg:grid-cols-2' : 'flex items-center'} w-full`}>
         <div className="w-full flex flex-col items-center justify-center">
-          <h4 className="border-b-[1px] border-black dark:border-white pb-2 px-3 mb-5">Change personal data</h4>
+          <h4 className="border-b-[1px] border-black dark:border-white pb-2 px-3 mb-5 text-center">Change personal data</h4>
           <form
-            className={`flex flex-col items-center ${session?.user.provider === 'credentials' ? 'w-1/2' : 'w-1/3'} text-xl h-full`}
+            className={`flex flex-col items-center ${
+              session?.user.provider === 'credentials' ? 'w-full xs:w-1/2' : 'w-full xs:w-1/2 lg:w-1/3'
+            } text-xl h-full`}
             onSubmit={handleChangePersonalData}
           >
             <FormField id="name" type="text" value={formValues.name || ''} maxLength={40} onChange={handleInputChange} />
@@ -118,9 +120,9 @@ export default function AccountInformation() {
           </form>
         </div>
         {session?.user.provider === 'credentials' ? (
-          <div className="w-full flex flex-col items-center justify-center">
+          <div className="w-full flex flex-col items-center justify-center mt-16 lg:mt-0">
             <h4 className="border-b-[1px] border-black dark:border-white pb-2 px-3 mb-5">Change password</h4>
-            <form className="flex flex-col items-center justify-center w-1/2 text-xl h-full" onSubmit={handleChangePassword}>
+            <form className="flex flex-col items-center justify-center gap-2 lg:gap-0 w-full xs:w-1/2 text-xl h-full" onSubmit={handleChangePassword}>
               <PasswordFormField label="current password" name="current" value={passwords.current} onChange={handlePasswordInputChange} />
               <PasswordFormField label="new password" name="new" value={passwords.new || ''} onChange={handlePasswordInputChange} />
               <PasswordSecurityStatus validationStatus={validationStatus} />
