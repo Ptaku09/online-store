@@ -53,7 +53,7 @@ export const updateUserById = async (id: string, name: string, email: string) =>
   const uid = new ObjectId(id);
 
   await dbGoogle.collection('users').findOneAndUpdate({ _id: uid }, { $set: { name, email } });
-  await dbEmail.collection('users').findOneAndUpdate({ _id: uid }, { $set: { name: name.split(' ')[0], email } });
+  await dbEmail.collection('users').findOneAndUpdate({ _id: uid }, { $set: { name: name, email } });
 };
 
 export const changePassword = async (email: string, password: string) => {
