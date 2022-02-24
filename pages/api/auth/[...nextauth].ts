@@ -46,6 +46,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     ],
     pages: {
       signIn: '/signin',
+      error: '/signin',
     },
     session: {
       strategy: 'jwt',

@@ -28,7 +28,7 @@ export default function SignIn() {
       redirect: false,
       email: formValues.email.trim(),
       password: formValues.password?.trim(),
-    });
+    }).catch(); //prevent nextauth from redirecting when user provided wrong credentials
 
     if (await getSession()) {
       setFormValues(initialState);

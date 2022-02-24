@@ -5,14 +5,25 @@ import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { Popover } from '@headlessui/react';
 import CartWidget from './CartWidget';
+import { useRouter } from 'next/router';
 
 export default function Navbar() {
   const [screenWidth, setScreenWidth] = useState(768);
+  const [isLoading, setLoading] = useState(false);
+  const router = useRouter();
   const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setLoading(false);
+  }, [router.pathname]);
 
   useEffect(() => {
     setScreenWidth(window.screen.width);
   }, []);
+
+  const handleLoading = () => {
+    if (router.pathname !== '/user' && router.pathname !== '/signin') setLoading(true);
+  };
 
   return (
     <header className="fixed bg-black w-screen h-10 top-0 flex justify-center items-center font-['Outfit'] text-white z-10">
@@ -76,11 +87,16 @@ export default function Navbar() {
         )}
         <Link href="/signin">
           <a>
-            <FontAwesomeIcon className="ml-3 mr-3 cursor-pointer" icon={faUser} />
+            <FontAwesomeIcon className="ml-3 mr-3 cursor-pointer" onClick={handleLoading} icon={faUser} />
           </a>
         </Link>
         <CartWidget />
       </div>
+      {isLoading ? (
+        <div className="fixed top-0 left-0 flex items-center justify-center transition animate-appearing-short z-[1000] w-screen h-mobile-screen lg:h-screen bg-white bg-opacity-60">
+          <svg className="animate-spin rounded-full border-[1.5rem] border-white border-t-gray-500 h-24 w-24 mr-3" viewBox="0 0 24 24" />
+        </div>
+      ) : null}
     </header>
   );
 }
