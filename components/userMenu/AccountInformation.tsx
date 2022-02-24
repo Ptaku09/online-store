@@ -1,40 +1,42 @@
 import React, { useState } from 'react';
 import FormField from '../FormField';
 import useForm from '../../hooks/useForm';
-import { User } from '../../pages/user';
-import { getSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
-const initialState = {
-  name: '',
-  surname: '',
-  email: '',
-};
-
-export default function AccountInformation({ user }: User) {
+export default function AccountInformation() {
+  const { data: session } = useSession();
+  const [initialState] = useState({
+    name: session?.user.name?.split(' ')[0] || '',
+    surname: session?.user.name?.split(' ')[1] || '',
+    email: session?.user.email || '',
+  });
   const { formValues, handleInputChange } = useForm(initialState);
   const [isPending, setIsPending] = useState(false);
   const [message, setMessage] = useState('');
+  const router = useRouter();
 
   const handleChangePersonalData = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     setIsPending(true);
 
-    const token = await getSession().then((session) => session?.user.id);
-    const name = formValues.name?.trim() ? formValues.name?.trim() : user.name.split(' ')[0];
-    const surname = formValues.surname?.trim() ? formValues.surname?.trim() : user.name.split(' ')[1];
-
     const res = await fetch('/api/changeData', {
       body: JSON.stringify({
-        token,
-        name: name + ' ' + surname,
-        email: formValues.email.trim() || user.email,
+        token: session?.user.id,
+        name: formValues.name?.trim() + ' ' + formValues.surname?.trim(),
+        email: formValues.email.trim(),
       }),
-      method: 'POST',
+      method: 'PATCH',
     });
 
     if (res.status === 200) {
       setIsPending(false);
       setMessage('');
+
+      fetch('/api/auth/session?update', {
+        method: 'GET',
+        credentials: 'include',
+      }).then(() => router.reload());
     } else {
       setIsPending(false);
       setMessage('Something went wrong!');
@@ -48,11 +50,11 @@ export default function AccountInformation({ user }: User) {
         <div className="w-full flex flex-col items-center justify-center">
           <h4 className="border-b-[1px] border-black dark:border-white pb-2 px-3 mb-5">Change personal data</h4>
           <form className="flex flex-col items-center w-1/2 text-xl" onSubmit={handleChangePersonalData}>
-            <FormField id="name" type="text" value={formValues.name || user.name.split(' ')[0]} maxLength={40} onChange={handleInputChange} />
-            <FormField id="surname" type="text" value={formValues.surname || user.name.split(' ')[1]} maxLength={40} onChange={handleInputChange} />
-            <FormField id="email" type="email" value={formValues.email || user.email} maxLength={40} onChange={handleInputChange} />
+            <FormField id="name" type="text" value={formValues.name || ''} maxLength={40} onChange={handleInputChange} />
+            <FormField id="surname" type="text" value={formValues.surname || ''} maxLength={40} onChange={handleInputChange} />
+            <FormField id="email" type="email" value={formValues.email} maxLength={40} onChange={handleInputChange} />
             {message ? <p className="text-red-700 text-lg mb-5 text-center">{message}</p> : null}
-            <button className="flex items-center justify-center bg-orange-400 text-white text-lg shadow-xl lg:hover:bg-orange-300 lg:disabled:hover:bg-orange-400 lg:disabled:hover:bg-opacity-50 disabled:bg-opacity-50 lg:disabled:cursor-not-allowed w-full py-3 rounded-md">
+            <button className="flex items-center justify-center bg-orange-400 text-white text-lg shadow-xl lg:hover:bg-orange-300 lg:disabled:hover:bg-orange-400 lg:disabled:hover:bg-opacity-50 disabled:bg-opacity-50 lg:disabled:cursor-not-allowed w-5/6 py-3 rounded-md">
               {!isPending ? (
                 'Save changes'
               ) : (

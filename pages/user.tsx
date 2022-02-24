@@ -7,18 +7,7 @@ import Orders from '../components/userMenu/Orders';
 import Returns from '../components/userMenu/Returns';
 import AccountInformation from '../components/userMenu/AccountInformation';
 
-interface UserProps {
-  name: string;
-  email: string;
-  image?: string;
-  id: string;
-}
-
-export type User = {
-  user: UserProps;
-};
-
-export default function User({ user }: User) {
+export default function User() {
   const { data: session } = useSession();
   const [selected, setSelected] = useState('orders');
   const [screenWidth, setScreenWidth] = useState(768);
@@ -250,7 +239,7 @@ export default function User({ user }: User) {
           ) : selected === 'returns' ? (
             <Returns />
           ) : selected === 'info' ? (
-            <AccountInformation user={user} />
+            <AccountInformation />
           ) : (
             <DeleteAccount />
           )}
@@ -273,8 +262,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   return {
-    props: {
-      user: session.user,
-    },
+    props: {},
   };
 };

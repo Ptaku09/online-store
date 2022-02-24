@@ -3,7 +3,7 @@ import { updateUserById } from '../../lib/auth';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
-    case 'POST':
+    case 'PATCH':
       const { token, name, email } = JSON.parse(req.body);
 
       try {
