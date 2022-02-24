@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { getSession, signIn } from 'next-auth/react';
 import Image from 'next/image';
 import Google from '../assets/google-brands.svg';
@@ -8,6 +8,9 @@ import FormField from '../components/FormField';
 import useForm from '../hooks/useForm';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import usePassword from '../hooks/usePassword';
+import PasswordSecurityStatus from '../components/PasswordSecurityStatus';
+import PasswordFormField from '../components/PasswordFormField';
 
 const initialState = {
   name: '',
@@ -20,52 +23,12 @@ const passwordsInitialState = {
   repeated: '',
 };
 
-const validationInitialState = {
-  characters: false,
-  digit: false,
-  capital: false,
-};
-
 export default function SignUp() {
-  const [passwords, setPasswords] = useState(passwordsInitialState);
-  const [validationStatus, setValidationStatus] = useState(validationInitialState);
-  const [isDisabled, setDisabled] = useState(true);
   const [message, setMessage] = useState('');
-  const { formValues, setFormValues, handleInputChange } = useForm(initialState);
+  const { formValues, handleInputChange } = useForm(initialState);
   const [isPending, setIsPending] = useState(false);
+  const { passwords, validationStatus, isDisabled, handlePasswordInputChange } = usePassword(passwordsInitialState);
   const router = useRouter();
-
-  useEffect(() => {
-    //password security validation
-    const checkPassword = () => {
-      let characters = false;
-      let digit = false;
-      let capital = false;
-
-      if (passwords.current.length >= 8) characters = true;
-      if (/[A-Z]/.test(passwords.current)) capital = true;
-      if (/\d/.test(passwords.current)) digit = true;
-
-      setValidationStatus({
-        characters,
-        digit,
-        capital,
-      });
-
-      return characters && digit && capital;
-    };
-
-    checkPassword() && passwords.current === passwords.repeated ? setDisabled(false) : setDisabled(true);
-  }, [passwords]);
-
-  const handlePasswordInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const target = event.target as HTMLInputElement;
-
-    setPasswords({
-      ...passwords,
-      [target.name]: target.value,
-    });
-  };
 
   const handleSignUp = async (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -83,9 +46,8 @@ export default function SignUp() {
 
     switch (res.status) {
       case 200:
-        setFormValues(initialState);
-        setPasswords(passwordsInitialState);
         setIsPending(false);
+        setMessage('');
         await router.push('/signin');
         break;
 
@@ -121,36 +83,12 @@ export default function SignUp() {
               <FormField id="name" type="text" value={formValues.name || ''} maxLength={40} onChange={handleInputChange} />
               <FormField id="surname" type="text" value={formValues.surname || ''} maxLength={40} onChange={handleInputChange} />
               <FormField id="email" type="email" value={formValues.email} maxLength={40} onChange={handleInputChange} />
-              <label className="text-[0.75rem] ml-5 w-full" htmlFor="current">
-                PASSWORD
-              </label>
-              <input
-                className="w-full py-2 px-3 border-[1px] border-gray-300 bg-white shadow text-md text-black focus:outline-orange-400 focus:animate-pulse rounded-lg"
-                name="current"
-                type="password"
-                value={passwords.current}
-                onChange={handlePasswordInputChange}
-                required
-              />
-              <ol className="text-sm flex flex-row gap-6 mb-6 mt-2 list-disc">
-                {validationStatus.characters ? <li className="text-green-600">8 characters</li> : <li className="text-red-700">8 characters</li>}
-                {validationStatus.capital ? <li className="text-green-600">capital letter</li> : <li className="text-red-700">capital letter</li>}
-                {validationStatus.digit ? <li className="text-green-600">digit</li> : <li className="text-red-700">digit</li>}
-              </ol>
-              <label className="text-[0.75rem] ml-5 w-full" htmlFor="repeated">
-                REPEAT PASSWORD
-              </label>
-              <input
-                className="w-full py-2 px-3 border-[1px] border-gray-300 bg-white shadow text-md text-black focus:outline-orange-400 focus:animate-pulse rounded-lg mb-6"
-                name="repeated"
-                type="password"
-                value={passwords.repeated}
-                onChange={handlePasswordInputChange}
-                required
-              />
+              <PasswordFormField label="password" name="current" value={passwords.current} onChange={handlePasswordInputChange} />
+              <PasswordSecurityStatus validationStatus={validationStatus} />
+              <PasswordFormField label="repeat password" name="repeated" value={passwords.repeated} onChange={handlePasswordInputChange} />
               {message ? <p className="text-red-700 text-sm xs:text-xl mb-3 text-center">{message}</p> : null}
               <button
-                className="flex items-center justify-center bg-orange-400 text-white shadow-xl lg:hover:bg-orange-300 lg:disabled:hover:bg-orange-400 lg:disabled:hover:bg-opacity-50 disabled:bg-opacity-50 lg:disabled:cursor-not-allowed w-2/3 py-2 rounded-md"
+                className="flex items-center justify-center mt-6 bg-orange-400 text-white shadow-xl lg:hover:bg-orange-300 lg:disabled:hover:bg-orange-400 lg:disabled:hover:bg-opacity-50 disabled:bg-opacity-50 lg:disabled:cursor-not-allowed w-2/3 py-2 rounded-md"
                 disabled={isDisabled}
               >
                 {!isPending ? (

@@ -35,7 +35,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             id: user._id,
             name: user.name + ' ' + user.surname,
             email: user.email,
-            image: null,
+            provider: 'credentials',
           };
         },
       }),
@@ -60,7 +60,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
           //Check if user is logged via Google or credentials
           let updatedUser = await dbGoogle.collection('users').findOne({ _id: uid });
-          !updatedUser ? (updatedUser = await dbEmail.collection('users').findOne({ _id: uid })) : null;
+
+          if (updatedUser) {
+            token.user.provider = 'google';
+          } else {
+            updatedUser = await dbEmail.collection('users').findOne({ _id: uid });
+            token.user.provider = 'credentials';
+          }
 
           token.user.name = updatedUser?.name;
           token.user.email = updatedUser?.email;

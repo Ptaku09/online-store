@@ -18,8 +18,7 @@ export const createUser = async ({ email, password, name, surname }: User) => {
     id: uuidv4(),
     createdAt: Date.now(),
     email,
-    name,
-    surname,
+    name: name + ' ' + surname,
     hash,
     salt,
   };
@@ -54,7 +53,16 @@ export const updateUserById = async (id: string, name: string, email: string) =>
   const uid = new ObjectId(id);
 
   await dbGoogle.collection('users').findOneAndUpdate({ _id: uid }, { $set: { name, email } });
-  await dbEmail.collection('users').findOneAndUpdate({ _id: uid }, { $set: { name, email } });
+  await dbEmail.collection('users').findOneAndUpdate({ _id: uid }, { $set: { name: name.split(' ')[0], email } });
+};
+
+export const changePassword = async (email: string, password: string) => {
+  const client = await clientPromise;
+  const db = client.db(process.env.DB_NAME_USERS);
+  const salt = crypto.randomBytes(16).toString('hex');
+  const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
+
+  await db.collection('users').findOneAndUpdate({ email }, { $set: { hash, salt } });
 };
 
 export const validatePassword = async (user: WithId<Document>, inputPassword: string | undefined) => {
