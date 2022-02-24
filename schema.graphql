@@ -3460,7 +3460,7 @@ type Mutation {
     productVariantChannelListingUpdate(
         "ID of a product variant to update."
         id: ID!,
-        "('List of fields required to create or upgrade product variant ', 'channel listings.')"
+        "('List of fields required to create or upgrade product variant channel listings.',)"
         input: [ProductVariantChannelListingAddInput!]!
     ): ProductVariantChannelListingUpdate
     "Creates a new variant for a product."

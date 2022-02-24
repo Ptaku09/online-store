@@ -26,8 +26,8 @@ export default function SignIn() {
 
     await signIn('credentials', {
       redirect: false,
-      email: formValues.email,
-      password: formValues.password,
+      email: formValues.email.trim(),
+      password: formValues.password?.trim(),
     });
 
     if (await getSession()) {
@@ -61,7 +61,7 @@ export default function SignIn() {
               <FormField id="email" type="email" value={formValues.email} maxLength={40} onChange={handleInputChange} />
               <FormField id="password" type="password" value={formValues.password || ''} maxLength={40} onChange={handleInputChange} />
               {message ? <p className="text-red-700 text-sm xs:text-xl mb-3 text-center">{message}</p> : null}
-              <button className="bg-orange-400 text-white shadow-xl lg:hover:bg-orange-300 w-2/3 py-2 rounded-md">
+              <button className="flex items-center justify-center bg-orange-400 text-white shadow-xl lg:hover:bg-orange-300 w-5/6 py-2 rounded-md">
                 {!isPending ? (
                   'Log in'
                 ) : (

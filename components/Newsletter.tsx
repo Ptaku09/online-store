@@ -20,9 +20,9 @@ export default function Newsletter() {
 
     const res = await fetch('/api/newsletter', {
       body: JSON.stringify({
-        name: formValues.name,
-        surname: formValues.surname,
-        email: formValues.email,
+        name: formValues.name?.trim(),
+        surname: formValues.surname?.trim(),
+        email: formValues.email.trim(),
       }),
       method: 'POST',
     });
