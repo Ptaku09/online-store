@@ -69,9 +69,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             token.user.provider = 'credentials';
           }
 
-          token.user.name = updatedUser?.name;
-          token.user.email = updatedUser?.email;
-          token.user.image = updatedUser?.image;
+          token.user.name = await updatedUser?.name;
+          token.user.email = await updatedUser?.email;
+          token.user.image = await updatedUser?.image;
         } else {
           user && (token.user = user);
         }
