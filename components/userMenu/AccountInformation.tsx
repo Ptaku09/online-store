@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import FormField from '../FormField';
 import useForm from '../../hooks/useForm';
-import { useSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import usePassword from '../../hooks/usePassword';
 import PasswordFormField from '../PasswordFormField';
@@ -28,8 +28,6 @@ export default function AccountInformation() {
   const { passwords, validationStatus, isDisabled, handlePasswordInputChange } = usePassword(passwordsInitialState);
   const router = useRouter();
 
-  console.log(session?.user.name);
-
   const handleChangePersonalData = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     setIsPendingData(true);
@@ -50,7 +48,8 @@ export default function AccountInformation() {
       fetch('/api/auth/session?update', {
         method: 'GET',
         credentials: 'include',
-      }).then(() => {
+      }).then(async () => {
+        console.log(await getSession());
         router.reload();
       });
     } else {
