@@ -49,7 +49,7 @@ export default function AccountInformation() {
         method: 'GET',
         credentials: 'include',
       }).then(async () => {
-        console.log(await getSession());
+        await getSession().then((ses) => console.log(ses?.user));
         router.reload();
       });
     } else {
