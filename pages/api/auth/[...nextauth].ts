@@ -54,9 +54,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     },
     callbacks: {
       jwt: async ({ token, user }) => {
-        token.user.name = req.url;
-        return token;
-
         if (req.url === '/api/auth/session?update') {
           const client = await clientPromise;
           const dbGoogle = client.db(process.env.DB_NAME_USERS_GOOGLE);
@@ -76,13 +73,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           token.user.name = updatedUser?.name;
           token.user.email = updatedUser?.email;
           token.user.image = updatedUser?.image;
+
+          return token;
         } else {
-          // user && (token.user = user);
+          user && (token.user = user);
+          token.user.id = token.sub;
+          return token;
         }
-
-        token.user.id = token.sub;
-
-        return token;
       },
       session: async ({ session, token }) => {
         session.user = token.user;

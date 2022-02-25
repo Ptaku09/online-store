@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import FormField from '../FormField';
 import useForm from '../../hooks/useForm';
-import { getSession, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import usePassword from '../../hooks/usePassword';
 import PasswordFormField from '../PasswordFormField';
@@ -48,10 +48,7 @@ export default function AccountInformation() {
       fetch('/api/auth/session?update', {
         method: 'GET',
         credentials: 'include',
-      }).then(async () => {
-        await getSession().then((ses) => console.log(ses?.user));
-        router.reload();
-      });
+      }).then(() => router.reload());
     } else {
       setIsPendingData(false);
       setDataMessage('Something went wrong!');

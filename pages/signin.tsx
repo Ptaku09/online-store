@@ -28,16 +28,16 @@ export default function SignIn() {
       redirect: false,
       email: formValues.email.trim(),
       password: formValues.password?.trim(),
-    }).catch(); //prevent nextauth from redirecting when user provided wrong credentials
-
-    if (await getSession()) {
-      setFormValues(initialState);
-      setIsPending(false);
-      await router.push('/user');
-    } else {
-      setIsPending(false);
-      setMessage('Wrong email or password');
-    }
+    })
+      .then(() => {
+        setFormValues(initialState);
+        setIsPending(false);
+        router.push('/user');
+      })
+      .catch(() => {
+        setIsPending(false);
+        setMessage('Wrong email or password');
+      }); //prevent nextauth from redirecting when user provided wrong credentials
   };
 
   return (
