@@ -54,6 +54,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     },
     callbacks: {
       jwt: async ({ token, user }) => {
+        res.status(200).json(req.url);
         if (req.url === '/api/auth/session?update') {
           const client = await clientPromise;
           const dbGoogle = client.db(process.env.DB_NAME_USERS_GOOGLE);
@@ -70,9 +71,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             token.user.provider = 'credentials';
           }
 
-          setTimeout(() => {
-            console.log(updatedUser);
-          }, 2000);
+          res.status(200).json(updatedUser);
 
           token.user.name = await updatedUser?.name;
           token.user.email = await updatedUser?.email;
@@ -83,6 +82,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
         token.user.id = token.sub;
 
+        res.status(200).json(token.user);
         return token;
       },
       session: async ({ session, token }) => {
