@@ -54,7 +54,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     },
     callbacks: {
       jwt: async ({ token, user }) => {
-        if (req.url !== '/api/auth/session') {
+        if (req.url === '/api/auth/session?update') {
           const client = await clientPromise;
           const dbGoogle = client.db(process.env.DB_NAME_USERS_GOOGLE);
           const dbEmail = client.db(process.env.DB_NAME_USERS);
