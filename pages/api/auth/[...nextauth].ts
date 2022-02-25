@@ -73,22 +73,17 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           token.user.name = await updatedUser?.name;
           token.user.email = await updatedUser?.email;
           token.user.image = await updatedUser?.image;
-          token.user.name = 'test';
-          token.user.email = 'sadsad';
-          token.user.image = null;
+          token.user.name = req.url;
         } else {
           user && (token.user = user);
         }
 
         token.user.id = token.sub;
-        token.user.email = 'sadsad';
-        token.user.image = null;
 
         return token;
       },
       session: async ({ session, token }) => {
         session.user = token.user;
-        session.user.name = req.url;
 
         return session;
       },
