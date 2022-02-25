@@ -72,6 +72,7 @@ export default function AccountInformation() {
       case 200:
         setIsPendingPassword(false);
         setPasswordMessage('');
+
         fetch('/api/auth/session?update', {
           method: 'GET',
           credentials: 'include',
