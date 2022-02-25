@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import FormField from '../FormField';
 import useForm from '../../hooks/useForm';
-import { useSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import usePassword from '../../hooks/usePassword';
 import PasswordFormField from '../PasswordFormField';
@@ -44,7 +44,10 @@ export default function AccountInformation() {
       fetch('/api/auth/session?update', {
         method: 'GET',
         credentials: 'include',
-      }).then(() => router.reload());
+      }).then(async () => {
+        await getSession();
+        await router.reload();
+      });
     });
 
     // if (res.status === 200) {
