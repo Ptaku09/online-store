@@ -11,6 +11,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   return NextAuth(req, res, {
     adapter: MongoDBAdapter(clientPromise),
     secret: process.env.NEXT_AUTH_SECRET,
+    debug: true,
     providers: [
       CredentialsProvider({
         name: 'Credentials',
@@ -33,7 +34,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
           return {
             id: user._id,
-            name: user.name + ' ' + user.surname,
+            name: user.name,
             email: user.email,
             provider: 'credentials',
           };
