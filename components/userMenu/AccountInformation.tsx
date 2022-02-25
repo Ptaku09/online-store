@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import FormField from '../FormField';
 import useForm from '../../hooks/useForm';
-import { getSession, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import usePassword from '../../hooks/usePassword';
 import PasswordFormField from '../PasswordFormField';
@@ -40,25 +40,22 @@ export default function AccountInformation() {
         email: formValues.email.trim(),
       }),
       method: 'PATCH',
-    }).then(() => {
+    });
+
+    if (res.status === 200) {
+      setIsPendingData(false);
+      setDataMessage('');
+
       fetch('/api/auth/session?update', {
         method: 'GET',
         credentials: 'include',
-      }).then(async () => {
-        await getSession();
-        await router.reload();
+      }).then(() => {
+        router.reload();
       });
-    });
-
-    // if (res.status === 200) {
-    //   setIsPendingData(false);
-    //   setDataMessage('');
-    //
-    //
-    // } else {
-    //   setIsPendingData(false);
-    //   setDataMessage('Something went wrong!');
-    // }
+    } else {
+      setIsPendingData(false);
+      setDataMessage('Something went wrong!');
+    }
   };
 
   const handleChangePassword = async (event: React.SyntheticEvent) => {
