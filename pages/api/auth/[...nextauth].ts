@@ -81,7 +81,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         }
 
         token.user.id = token.sub;
-        token.user.name = req.url;
         token.user.email = 'sadsad';
         token.user.image = null;
 

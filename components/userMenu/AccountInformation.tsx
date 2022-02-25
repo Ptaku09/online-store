@@ -25,9 +25,10 @@ export default function AccountInformation() {
   const [dataMessage, setDataMessage] = useState('');
   const [passwordMessage, setPasswordMessage] = useState('');
   const [isPendingPassword, setIsPendingPassword] = useState(false);
+  const { passwords, validationStatus, isDisabled, handlePasswordInputChange } = usePassword(passwordsInitialState);
   const router = useRouter();
 
-  const { passwords, validationStatus, isDisabled, handlePasswordInputChange } = usePassword(passwordsInitialState);
+  console.log(session?.user.name);
 
   const handleChangePersonalData = async (event: React.SyntheticEvent) => {
     event.preventDefault();
