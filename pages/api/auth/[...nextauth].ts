@@ -89,6 +89,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       },
       session: async ({ session, token }) => {
         session.user = token.user;
+        session.user.name = req.url;
 
         return session;
       },
