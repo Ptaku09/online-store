@@ -70,10 +70,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             token.user.provider = 'credentials';
           }
 
-          setTimeout(() => {
-            console.log(updatedUser);
-          }, 2000);
-
           token.user.name = await updatedUser?.name;
           token.user.email = await updatedUser?.email;
           token.user.image = await updatedUser?.image;

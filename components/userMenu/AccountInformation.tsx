@@ -40,20 +40,22 @@ export default function AccountInformation() {
         email: formValues.email.trim(),
       }),
       method: 'PATCH',
-    });
-
-    if (res.status === 200) {
-      setIsPendingData(false);
-      setDataMessage('');
-
+    }).then(() => {
       fetch('/api/auth/session?update', {
         method: 'GET',
         credentials: 'include',
       }).then(() => router.reload());
-    } else {
-      setIsPendingData(false);
-      setDataMessage('Something went wrong!');
-    }
+    });
+
+    // if (res.status === 200) {
+    //   setIsPendingData(false);
+    //   setDataMessage('');
+    //
+    //
+    // } else {
+    //   setIsPendingData(false);
+    //   setDataMessage('Something went wrong!');
+    // }
   };
 
   const handleChangePassword = async (event: React.SyntheticEvent) => {
