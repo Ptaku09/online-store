@@ -24,19 +24,25 @@ export default function SignIn() {
     event.preventDefault();
     setIsPending(true);
 
-    await signIn('credentials', {
+    signIn('credentials', {
       redirect: false,
       email: formValues.email.trim(),
       password: formValues.password?.trim(),
     })
-      .then(() => {
-        setFormValues(initialState);
-        setIsPending(false);
-        router.push('/user');
+      .then((res: any) => {
+        console.log(res);
+        if (res.status === 401) {
+          setIsPending(false);
+          setMessage('Wrong email or password');
+        } else {
+          setFormValues(initialState);
+          router.push('/user');
+          setIsPending(false);
+        }
       })
-      .catch(() => {
+      .catch((e) => {
         setIsPending(false);
-        setMessage('Wrong email or password');
+        setMessage('Something went wrong');
       }); //prevent nextauth from redirecting when user provided wrong credentials
   };
 

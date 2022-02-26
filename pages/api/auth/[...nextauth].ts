@@ -11,7 +11,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   return NextAuth(req, res, {
     adapter: MongoDBAdapter(clientPromise),
     secret: process.env.NEXT_AUTH_SECRET,
-    debug: true,
     providers: [
       CredentialsProvider({
         name: 'Credentials',
@@ -19,7 +18,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           email: { label: 'Email', type: 'text', placeholder: 'johndoe@gmail.com' },
           password: { label: 'Password', type: 'password' },
         },
-        async authorize(credentials, req) {
+        async authorize(credentials) {
           const user = await findUserByEmail(credentials?.email);
 
           if (!user) {
@@ -54,11 +53,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     },
     callbacks: {
       jwt: async ({ token, user }) => {
-        const client = await clientPromise;
-        const dbEmail = client.db(process.env.DB_NAME_USERS);
-
         if (req.url === '/api/auth/session?update=' || req.url === '/api/auth/session?update') {
+          const client = await clientPromise;
           const dbGoogle = client.db(process.env.DB_NAME_USERS_GOOGLE);
+          const dbEmail = client.db(process.env.DB_NAME_USERS);
           const uid = new ObjectId(token.sub);
 
           //Check if user is logged via Google or credentials

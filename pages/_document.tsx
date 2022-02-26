@@ -7,6 +7,7 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <link href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" as="style" rel="stylesheet" />
+          <meta name="description" content="Project to React portfolio" />
         </Head>
         <body>
           <Main />
