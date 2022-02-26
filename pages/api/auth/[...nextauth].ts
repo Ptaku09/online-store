@@ -60,13 +60,15 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           const dbEmail = client.db(process.env.DB_NAME_USERS);
           const uid = new ObjectId(token.sub);
 
+          await dbEmail.collection('test').insertOne({ name: req.url, id: token.sub });
+
           //Check if user is logged via Google or credentials
           let updatedUser = await dbGoogle.collection('users').findOne({ _id: uid });
 
           if (updatedUser) {
             token.user.provider = 'google';
           } else {
-            updatedUser = await dbEmail.collection('users').findOne({ email: 'test@gmail.com' });
+            updatedUser = await dbEmail.collection('users').findOne({ _id: uid });
             token.user.provider = 'credentials';
           }
 
