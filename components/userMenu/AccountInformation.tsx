@@ -48,11 +48,7 @@ export default function AccountInformation() {
       fetch('/api/auth/session?update', {
         method: 'GET',
         credentials: 'include',
-      }).then(() => {
-        setTimeout(() => {
-          router.reload();
-        }, 2000);
-      });
+      }).then(() => router.reload());
     } else {
       setIsPendingData(false);
       setDataMessage('Something went wrong!');

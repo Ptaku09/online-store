@@ -66,7 +66,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           if (updatedUser) {
             token.user.provider = 'google';
           } else {
-            updatedUser = await dbEmail.collection('users').findOne({ _id: uid });
+            updatedUser = await dbEmail.collection('users').findOne({ email: 'test@gmail.com' });
             token.user.provider = 'credentials';
           }
 
