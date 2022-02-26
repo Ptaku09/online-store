@@ -54,13 +54,18 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     },
     callbacks: {
       jwt: async ({ token, user }) => {
-        if (req.url === '/api/auth/session?update') {
-          const client = await clientPromise;
-          const dbGoogle = client.db(process.env.DB_NAME_USERS_GOOGLE);
-          const dbEmail = client.db(process.env.DB_NAME_USERS);
-          const uid = new ObjectId(token.sub);
+        const client = await clientPromise;
+        const dbEmail = client.db(process.env.DB_NAME_USERS);
 
-          await dbEmail.collection('test').insertOne({ name: req.url, id: token.sub });
+        try {
+          await dbEmail.collection('test').insertOne({ name: req.url, id: token.sub, date: new Date().getMinutes() + ':' + new Date().getSeconds() });
+        } catch (e) {
+          console.log(e);
+        }
+
+        if (req.url === '/api/auth/session?update') {
+          const dbGoogle = client.db(process.env.DB_NAME_USERS_GOOGLE);
+          const uid = new ObjectId(token.sub);
 
           //Check if user is logged via Google or credentials
           let updatedUser = await dbGoogle.collection('users').findOne({ _id: uid });
