@@ -57,13 +57,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         const client = await clientPromise;
         const dbEmail = client.db(process.env.DB_NAME_USERS);
 
-        try {
-          await dbEmail.collection('test').insertOne({ name: req.url, id: token.sub, date: new Date().getMinutes() + ':' + new Date().getSeconds() });
-        } catch (e) {
-          console.log(e);
-        }
-
-        if (req.url === '/api/auth/session?update') {
+        if (req.url === '/api/auth/session?update=' || req.url === '/api/auth/session?update') {
           const dbGoogle = client.db(process.env.DB_NAME_USERS_GOOGLE);
           const uid = new ObjectId(token.sub);
 
