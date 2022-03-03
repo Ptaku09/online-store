@@ -32,7 +32,7 @@ export default function DeleteAccount() {
   };
 
   return (
-    <div className="w-full min-h-full h-auto flex items-center justify-start flex-col lg:animate-appearing-short">
+    <div className="w-full min-h-full h-auto flex items-center justify-start flex-col animate-appearing-short">
       <h1 className="text-5xl text-center">Delete your account</h1>
       <form className="flex items-center justify-center flex-col py-44 xs:py-16 lg:py-44" onSubmit={handleDeleteAccount}>
         <span className="flex items-center">

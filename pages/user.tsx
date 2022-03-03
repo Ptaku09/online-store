@@ -24,6 +24,13 @@ export default function User() {
     document.body.style.overflow === 'hidden' ? (document.body.style.overflow = 'unset') : (document.body.style.overflow = 'hidden');
   };
 
+  const handleSignOut = () => {
+    signOut().then(() => {
+      localStorage.setItem('cart-data', JSON.stringify([]));
+      sessionStorage.clear();
+    });
+  };
+
   return (
     <>
       <Head>
@@ -116,7 +123,7 @@ export default function User() {
                   </div>
                 </div>
               </form>
-              <button className="lg:hover:text-orange-400" onClick={() => signOut()}>
+              <button className="lg:hover:text-orange-400" onClick={handleSignOut}>
                 Logout
               </button>
             </div>
@@ -229,7 +236,7 @@ export default function User() {
                   </div>
                 </form>
               </div>
-              <button onClick={() => signOut()}>Logout</button>
+              <button onClick={handleSignOut}>Logout</button>
             </div>
           </>
         )}

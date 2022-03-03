@@ -30,7 +30,6 @@ export default function SignIn() {
       password: formValues.password?.trim(),
     })
       .then((res: any) => {
-        console.log(res);
         if (res.status === 401) {
           setIsPending(false);
           setMessage('Wrong email or password');
