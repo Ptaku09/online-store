@@ -92,7 +92,7 @@ export default function AccountInformation() {
   };
 
   return (
-    <div className="w-full h-auto min-h-full flex flex-col items-center justify-start lg:animate-appearing-short">
+    <div className="w-full h-auto min-h-full flex flex-col items-center justify-start animate-appearing-short">
       <h1 className="text-4xl xs:text-5xl text-center">Change your account information</h1>
       <div className={`mt-16 ${session?.user.provider === 'credentials' ? 'lg:grid lg:grid-cols-2' : 'flex items-center'} w-full`}>
         <div className="w-full flex flex-col items-center justify-center">
