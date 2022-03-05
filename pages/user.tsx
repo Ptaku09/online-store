@@ -15,9 +15,13 @@ export default function User() {
 
   useEffect(() => {
     setScreenWidth(window.screen.width);
+    setSelected(sessionStorage.getItem('user-menu-cart') || 'orders');
   }, []);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => setSelected(event.target.id);
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelected(event.target.id);
+    sessionStorage.setItem('user-menu-cart', event.target.id);
+  };
 
   const handleMenuOpen = () => {
     setOpen((prevState) => !prevState);
