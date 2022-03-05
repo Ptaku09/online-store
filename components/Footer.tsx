@@ -1,8 +1,12 @@
 import Image from 'next/image';
 import GitHub from '../assets/github-brands.svg';
 import React from 'react';
+import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 export default function Footer() {
+  const { status } = useSession();
+
   return (
     <div className="w-screen flex justify-center bg-black">
       <div className="flex items-center md:items-start md:grid md:grid-cols-2 w-screen 2xl:w-2/3 bg-black py-8 pl-12 md:px-16 lg:px-32 font-['Outfit'] text-white">
@@ -21,18 +25,26 @@ export default function Footer() {
         <div className="w-full md:grid md:grid-cols-2">
           <div className="text-sm">
             <h5 className="md:mb-4">INFORMATION</h5>
-            <p>About us</p>
-            <p>Delivery</p>
-            <p>Returns and exchanges</p>
-            <p>Payments</p>
+            {['About us', 'Delivery', 'Returns and exchanges', 'Payments'].map((title: string) => (
+              <p key={title}>{title}</p>
+            ))}
             <p className="mb-4 md:mb-0">Size guide</p>
           </div>
           <div className="text-sm">
             <h5 className="md:mb-4">MY ACCOUNT</h5>
-            <p>Orders</p>
-            <p>Returns</p>
-            <p>Account information</p>
-            <p>Delete account</p>
+            {[
+              { title: 'Orders', storageName: 'orders' },
+              { title: 'Returns', storageName: 'returns' },
+              { title: 'Account information', storageName: 'info' },
+              { title: 'Delete account', storageName: 'delete' },
+            ].map(({ title, storageName }: { title: string; storageName: string }) => (
+              <div key={title} onClick={() => (status === 'authenticated' ? sessionStorage.setItem('user-menu-cart', storageName) : null)}>
+                <Link href="/user">
+                  <a className="lg:hover:border-b-[1px] lg:border-b-white">{title}</a>
+                </Link>
+                <br />
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -49,7 +49,7 @@ const CartProvider = ({ children }: Props) => {
 
   useEffect(() => {
     if (localStorage.getItem('cart-data')) {
-      const prod = JSON.parse(localStorage.getItem('cart-data') || '[]');
+      const prod: Product[] = JSON.parse(localStorage.getItem('cart-data') || '[]');
       setItems(prod);
 
       //  Calculate amount of items and total price of cart
