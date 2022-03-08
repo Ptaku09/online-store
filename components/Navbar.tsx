@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { Popover } from '@headlessui/react';
-import CartWidget from './CartWidget';
 import { useRouter } from 'next/router';
+import CartWidget from './CartWidget';
 
 export default function Navbar() {
   const [screenWidth, setScreenWidth] = useState(768);
