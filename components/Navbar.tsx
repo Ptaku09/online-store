@@ -12,10 +12,15 @@ export default function Navbar() {
   const [isLoading, setLoading] = useState(false);
   const router = useRouter();
   const { theme, setTheme } = useTheme();
+  const [icon, setIcon] = useState(faMoon);
 
   useEffect(() => {
     setLoading(false);
   }, [router.pathname]);
+
+  useEffect(() => {
+    theme === 'dark' ? setIcon(faSun) : setIcon(faMoon);
+  }, [theme]);
 
   useEffect(() => {
     setScreenWidth(window.screen.width);
@@ -81,9 +86,9 @@ export default function Navbar() {
       )}
       <div className="absolute right-5">
         {theme === 'light' ? (
-          <FontAwesomeIcon className="cursor-pointer" icon={faMoon} onClick={() => setTheme('dark')} />
+          <FontAwesomeIcon className="cursor-pointer" icon={icon} onClick={() => setTheme('dark')} />
         ) : (
-          <FontAwesomeIcon className="cursor-pointer" icon={faSun} onClick={() => setTheme('light')} />
+          <FontAwesomeIcon className="cursor-pointer" icon={icon} onClick={() => setTheme('light')} />
         )}
         <Link href="/signin">
           <a>
