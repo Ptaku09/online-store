@@ -98,7 +98,7 @@ export default function Information() {
           <div className="relative xs:mb-20 md:mb-0 snap-start min-h-screen h-full w-full">
             <h1 ref={returnsRef} className="relative text-5xl font-bold border-b-2 pb-3 mb-4">
               <span id="returns" className="absolute -top-20" />
-              Returns
+              Returns and exchanges
             </h1>
             <p className="md:text-lg">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet erat finibus metus mollis aliquam. In quis tristique elit,

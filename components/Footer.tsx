@@ -25,10 +25,20 @@ export default function Footer() {
         <div className="w-full md:grid md:grid-cols-2">
           <div className="text-sm">
             <h5 className="md:mb-4">INFORMATION</h5>
-            {['About us', 'Delivery', 'Returns and exchanges', 'Payments'].map((title: string) => (
-              <p key={title}>{title}</p>
+            {[
+              { title: 'About us', href: '/information#about' },
+              { title: 'Delivery', href: '/information#delivery' },
+              { title: 'Returns and exchanges', href: '/information#returns' },
+              { title: 'Payments', href: '/information#payments' },
+              { title: 'Size guide', href: '/information#size' },
+            ].map(({ title, href }: { title: string; href: string }) => (
+              <div key={title}>
+                <Link href={href}>
+                  <a className="lg:hover:border-b-[1px] lg:border-b-white">{title}</a>
+                </Link>
+                <br />
+              </div>
             ))}
-            <p className="mb-4 md:mb-0">Size guide</p>
           </div>
           <div className="text-sm">
             <h5 className="md:mb-4">MY ACCOUNT</h5>
