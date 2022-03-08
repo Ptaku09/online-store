@@ -8,7 +8,7 @@ export default function Footer() {
   const { status } = useSession();
 
   return (
-    <div className="w-screen flex justify-center bg-black">
+    <div className="relative z-[2] w-screen flex justify-center bg-black">
       <div className="flex items-center md:items-start md:grid md:grid-cols-2 w-screen 2xl:w-2/3 bg-black py-8 pl-12 md:px-16 lg:px-32 font-['Outfit'] text-white">
         <div className="w-full h-full md:h-[30vh] flex items-start justify-between flex-col">
           <div className="w-2/3 md:w-1/3">
@@ -41,7 +41,7 @@ export default function Footer() {
             ))}
           </div>
           <div className="text-sm">
-            <h5 className="md:mb-4">MY ACCOUNT</h5>
+            <h5 className="mt-4 md:mt-0 md:mb-4">MY ACCOUNT</h5>
             {[
               { title: 'Orders', storageName: 'orders' },
               { title: 'Returns', storageName: 'returns' },

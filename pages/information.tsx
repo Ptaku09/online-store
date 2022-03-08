@@ -51,8 +51,8 @@ export default function Information() {
             ))}
           </div>
         ) : null}
-        <div className="md:px-20 mt-20 max-h-screen flex flex-col items-start justify-start overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth">
-          <div className="relative xs:mb-20 md:mb-0 xs:mb-20 md:mb-0 snap-start min-h-screen h-full w-full">
+        <div className="md:px-20 pt-20 md:pt-0 md:mt-20 max-h-screen flex flex-col items-start justify-start overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth">
+          <div className="relative xs:mb-20 md:mb-0 mb-20 md:mb-0 snap-start md:min-h-screen md:h-full w-full">
             <h1 ref={aboutRef} className="relative text-5xl font-bold border-b-2 pb-3 mb-4">
               <span id="about" className="absolute -top-20" />
               About us
@@ -66,13 +66,13 @@ export default function Information() {
               dictum mauris ipsum, et ultrices tortor tincidunt eu. Morbi sapien libero, sodales ut ornare et, luctus nec elit. Fusce orci felis,
               hendrerit a velit sit amet, aliquet scelerisque neque. In vulputate nunc urna, at malesuada dolor sagittis vitae.
             </p>
-            <span className="absolute xs:hidden bottom-28 2xl:bottom-56 w-full flex md:flex items-center justify-center gap-6">
+            <span className="absolute hidden bottom-28 2xl:bottom-56 w-full flex md:flex items-center justify-center gap-6">
               <a href="#delivery">
                 <FontAwesomeIcon icon={faArrowDown} />
               </a>
             </span>
           </div>
-          <div className="relative xs:mb-20 md:mb-0 snap-start min-h-screen h-full w-full">
+          <div className="relative mb-20 md:mb-0 snap-start md:min-h-screen md:h-full w-full">
             <h1 ref={deliveryRef} className="relative text-5xl font-bold border-b-2 pb-3 mb-4">
               <span id="delivery" className="absolute -top-20" />
               Delivery
@@ -86,7 +86,7 @@ export default function Information() {
               dictum mauris ipsum, et ultrices tortor tincidunt eu. Morbi sapien libero, sodales ut ornare et, luctus nec elit. Fusce orci felis,
               hendrerit a velit sit amet, aliquet scelerisque neque. In vulputate nunc urna, at malesuada dolor sagittis vitae.
             </p>
-            <span className="absolute xs:hidden bottom-28 2xl:bottom-56 w-full flex md:flex items-center justify-center gap-6">
+            <span className="absolute hidden bottom-28 2xl:bottom-56 w-full flex md:flex items-center justify-center gap-6">
               <a href="#about">
                 <FontAwesomeIcon icon={faArrowUp} />
               </a>
@@ -95,7 +95,7 @@ export default function Information() {
               </a>
             </span>
           </div>
-          <div className="relative xs:mb-20 md:mb-0 snap-start min-h-screen h-full w-full">
+          <div className="relative mb-20 md:mb-0 snap-start md:min-h-screen md:h-full w-full">
             <h1 ref={returnsRef} className="relative text-5xl font-bold border-b-2 pb-3 mb-4">
               <span id="returns" className="absolute -top-20" />
               Returns and exchanges
@@ -109,7 +109,7 @@ export default function Information() {
               dictum mauris ipsum, et ultrices tortor tincidunt eu. Morbi sapien libero, sodales ut ornare et, luctus nec elit. Fusce orci felis,
               hendrerit a velit sit amet, aliquet scelerisque neque. In vulputate nunc urna, at malesuada dolor sagittis vitae.
             </p>
-            <span className="absolute xs:hidden bottom-28 2xl:bottom-56 w-full flex md:flex items-center justify-center gap-6">
+            <span className="absolute hidden bottom-28 2xl:bottom-56 w-full flex md:flex items-center justify-center gap-6">
               <a href="#delivery">
                 <FontAwesomeIcon icon={faArrowUp} />
               </a>
@@ -118,7 +118,7 @@ export default function Information() {
               </a>
             </span>
           </div>
-          <div className="relative xs:mb-20 md:mb-0 snap-start min-h-screen h-full w-full">
+          <div className="relative mb-20 md:mb-0 snap-start md:min-h-screen md:h-full w-full">
             <h1 ref={paymentsRef} className="relative text-5xl font-bold border-b-2 pb-3 mb-4">
               <span id="payments" className="absolute -top-20" />
               Payments
@@ -132,7 +132,7 @@ export default function Information() {
               dictum mauris ipsum, et ultrices tortor tincidunt eu. Morbi sapien libero, sodales ut ornare et, luctus nec elit. Fusce orci felis,
               hendrerit a velit sit amet, aliquet scelerisque neque. In vulputate nunc urna, at malesuada dolor sagittis vitae.
             </p>
-            <span className="absolute xs:hidden bottom-28 2xl:bottom-56 w-full flex md:flex items-center justify-center gap-6">
+            <span className="absolute hidden bottom-28 2xl:bottom-56 w-full flex md:flex items-center justify-center gap-6">
               <a href="#returns">
                 <FontAwesomeIcon icon={faArrowUp} />
               </a>
@@ -141,7 +141,7 @@ export default function Information() {
               </a>
             </span>
           </div>
-          <div className="relative xs:mb-20 md:mb-0 snap-start min-h-screen h-full w-full">
+          <div className="relative mb-20 md:mb-0 snap-start md:min-h-screen md:h-full w-full">
             <h1 ref={sizeRef} className="relative text-5xl font-bold border-b-2 pb-3 mb-4">
               <span id="size" className="absolute -top-20" />
               Size guide
@@ -155,7 +155,7 @@ export default function Information() {
               dictum mauris ipsum, et ultrices tortor tincidunt eu. Morbi sapien libero, sodales ut ornare et, luctus nec elit. Fusce orci felis,
               hendrerit a velit sit amet, aliquet scelerisque neque. In vulputate nunc urna, at malesuada dolor sagittis vitae.
             </p>
-            <span className="absolute xs:hidden bottom-28 2xl:bottom-56 w-full flex md:flex items-center justify-center gap-6">
+            <span className="absolute hidden bottom-28 2xl:bottom-56 w-full flex md:flex items-center justify-center gap-6">
               <a href="#payments">
                 <FontAwesomeIcon icon={faArrowUp} />
               </a>
