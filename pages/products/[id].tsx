@@ -55,7 +55,7 @@ export default function Product({ productData }: Props) {
       <div className="w-screen min-h-mobile-screen lg:min-h-screen h-auto flex items-center justify-center flex-col dark:bg-[rgba(55,55,55,1)]">
         <div className="lg:grid lg:grid-cols-2 lg:gap-10 h-full w-full p-16 xs:p-20 lg:mx-10 mt-20 lg:mt-10 animate-appearing">
           <div className="w-full h-full flex items-start lg:items-center justify-center">
-            <div className="relative bg-white h-72 xs:h-[26rem] w-full lg:h-full lg:w-4/5 shadow-2xl dark:shadow-dark mb-3 transform rounded-2xl">
+            <div className="relative bg-white h-72 xs:h-[26rem] w-full lg:h-full lg:w-4/5 shadow-2xl dark:shadow-dark mb-3 transform rounded-2xl touch-pinch-zoom">
               <Image src={productData.thumbnail?.url || ''} alt={productData.name} layout="fill" objectFit="cover" priority />
             </div>
           </div>

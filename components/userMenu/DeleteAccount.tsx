@@ -36,7 +36,12 @@ export default function DeleteAccount() {
       <h1 className="text-5xl text-center">Delete your account</h1>
       <form className="flex items-center justify-center flex-col py-44 xs:py-16 lg:py-44" onSubmit={handleDeleteAccount}>
         <span className="flex items-center">
-          <input type="checkbox" id="agreement-delete" className="peer w-6 h-6" onClick={() => setDisabled((prevState) => !prevState)} />
+          <input
+            type="checkbox"
+            id="agreement-delete"
+            className="peer w-6 h-6 accent-orange-400"
+            onClick={() => setDisabled((prevState) => !prevState)}
+          />
           <label htmlFor="agreement-delete" className="pr-5 ml-4 opacity-50 lg:hover:opacity-75 peer-checked:opacity-100 text-lg cursor-pointer">
             I know that this action is <i className="text-red-700">permanent </i>!
           </label>
