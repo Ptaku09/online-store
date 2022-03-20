@@ -52,17 +52,17 @@ export default function Product({ productData }: Props) {
         />
       </Head>
 
-      <div className="w-screen min-h-mobile-screen lg:min-h-screen h-auto flex items-center justify-center flex-col dark:bg-[rgba(55,55,55,1)]">
-        <div className="lg:grid lg:grid-cols-2 lg:gap-10 h-full w-full p-16 xs:p-20 lg:mx-10 mt-20 lg:mt-10 animate-appearing">
-          <div className="w-full h-full flex items-start lg:items-center justify-center">
-            <div className="relative bg-white h-72 xs:h-[26rem] w-full lg:h-full lg:w-4/5 shadow-2xl dark:shadow-dark mb-3 transform rounded-2xl touch-pinch-zoom">
+      <div className="w-screen min-h-mobile-screen md:min-h-screen h-auto flex items-center justify-center flex-col dark:bg-[rgba(55,55,55,1)]">
+        <div className="md:grid md:grid-cols-2 md:gap-10 h-full w-full p-16 xs:p-20 md:mx-10 mt-20 md:mt-10 animate-appearing">
+          <div className="w-full h-full flex items-start md:items-center justify-center">
+            <div className="relative bg-white h-72 xs:h-[26rem] w-full md:h-full md:w-4/5 shadow-2xl dark:shadow-dark mb-3 transform rounded-2xl touch-pinch-zoom">
               <Image src={productData.thumbnail?.url || ''} alt={productData.name} layout="fill" objectFit="cover" priority />
             </div>
           </div>
-          <div className="lg:relative flex items-start justify-start flex-col w-full h-full pt-10 xs:p-10">
+          <div className="md:relative flex items-start justify-start flex-col w-full h-full pt-10 xs:p-10">
             <div
               onClick={() => router.back()}
-              className="absolute flex items-center justify-center top-16 xs:top-20 lg:top-[-2rem] mb-10 text-sm text-white bg-black py-3 px-10 rounded-xl shadow-2xl border-2 border-black focus:border-orange-400 cursor-pointer"
+              className="absolute flex items-center justify-center top-16 xs:top-20 md:top-[-2rem] mb-10 text-sm text-white bg-black py-3 px-10 rounded-xl shadow-2xl border-2 border-black focus:border-orange-400 cursor-pointer"
             >
               <FontAwesomeIcon className="mr-2 scale-90" icon={faChevronLeft} />
               GO BACK
@@ -70,8 +70,8 @@ export default function Product({ productData }: Props) {
             <h3 className="text-3xl font-thin border-b-2 xs:w-1/2 text-left pb-2">{productData.name}</h3>
             <h2 className="text-5xl font-normal my-5 font-['Outfit']">{productData.pricing?.priceRange?.stop?.gross.amount || 10} $</h2>
             <p className="font-['Outfit']">{productData.seoDescription ? productData.seoDescription : 'Enjoy best quality!'}</p>
-            <form className="flex flex-col justify-between w-full lg:w-1/2" onSubmit={handleAddToCart}>
-              <div className="flex flex-row justify-between xs:justify-around lg:justify-between xs:gap-0 lg:gap-16 my-10 xs:mt-16 xs:mb-0 lg:my-10 text-white">
+            <form className="flex flex-col justify-between w-full md:w-1/2" onSubmit={handleAddToCart}>
+              <div className="flex flex-row justify-between xs:justify-around md:justify-between xs:gap-0 md:gap-16 my-10 xs:mt-16 xs:mb-0 lg:my-10 text-white">
                 <div>
                   <input type="radio" name="sizes" id="S" checked={selected === 'S'} onChange={handleInputChange} className="peer" hidden />
                   <label

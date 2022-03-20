@@ -9,10 +9,10 @@ export default function Footer() {
 
   return (
     <div className="relative z-[2] w-screen flex justify-center bg-black">
-      <div className="flex items-center md:items-start md:grid md:grid-cols-2 w-screen 2xl:w-2/3 bg-black py-8 pl-12 md:px-16 lg:px-32 font-['Outfit'] text-white">
+      <div className="flex items-center md:items-start md:grid md:grid-cols-2 w-screen 2xl:w-2/3 bg-black py-8 pl-12 md:px-16 md:px-32 font-['Outfit'] text-white">
         <div className="w-full h-full md:h-[30vh] flex items-start justify-between flex-col">
           <div className="w-2/3 md:w-1/3">
-            <h5 className="font-serif lg:px-2 font-bold text-lg border-b-2 mb-4">FVRT_STR</h5>
+            <h5 className="font-serif md:px-2 font-bold text-lg border-b-2 mb-4">FVRT_STR</h5>
             <p className="text-sm mb-8 md:mb-0">Enjoy premium quality and be greater every day!</p>
           </div>
           <div className="opacity-50 flex flex-row items-center">

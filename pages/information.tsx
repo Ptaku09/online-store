@@ -51,8 +51,8 @@ export default function Information() {
             ))}
           </div>
         ) : null}
-        <div className="md:px-20 pt-20 md:pt-0 md:mt-20 max-h-screen flex flex-col items-start justify-start overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth">
-          <div className="relative xs:mb-20 md:mb-0 mb-20 md:mb-0 snap-start md:min-h-screen md:h-full w-full">
+        <div className="md:px-20 pt-20 md:pt-0 lg:mt-20 max-h-screen flex flex-col items-start justify-start overflow-y-auto lg:snap-y lg:snap-mandatory scroll-smooth">
+          <div className="relative xs:mb-20 md:mb-0 md:mt-20 lg:mt-0 snap-start md:min-h-screen md:h-full w-full">
             <h1 ref={aboutRef} className="relative text-5xl font-bold border-b-2 pb-3 mb-4">
               <span id="about" className="absolute -top-20" />
               About us

@@ -28,11 +28,11 @@ export default function Cart() {
         />
       </Head>
 
-      <div className="w-screen min-h-mobile-screen lg:min-h-screen bg-gray-300 lg:grid lg:grid-cols-[3fr_2fr] font-['Outfit']">
-        <div className="w-full xs:max-h-mobile-screen lg:max-h-screen h-auto bg-white dark:bg-[rgba(55,55,55,1)] pt-20 lg:pt-28 pb-10 px-12 xs:px-20 2xl:px-60 overflow-y-auto">
+      <div className="w-screen min-h-mobile-screen md:min-h-screen bg-gray-300 md:grid md:grid-cols-[3fr_2fr] font-['Outfit']">
+        <div className="w-full xs:max-h-mobile-screen md:max-h-screen h-auto bg-white dark:bg-[rgba(55,55,55,1)] pt-20 md:pt-28 pb-10 px-12 xs:px-20 2xl:px-60 overflow-y-auto">
           <div className="flex flex-row justify-center xs:justify-start">
             <h3 className="text-5xl">Cart</h3>
-            <div className="h-full flex justify-center w-1/3 xs:w-1/5 lg:w-1/6 bg-gray-300 ml-5 py-3 text-black rounded-md shadow-2xl">
+            <div className="h-full flex justify-center w-1/3 xs:w-1/5 md:w-1/6 bg-gray-300 ml-5 py-3 text-black rounded-md shadow-2xl">
               {amountOfItems}
               {amountOfItems === 1 ? '_ITEM' : '_ITEMS'}
             </div>
@@ -41,7 +41,7 @@ export default function Cart() {
             {items.map((item: Product) => (
               <div
                 key={item.id + item.size}
-                className="relative flex items-start justify-start w-full py-7 lg:px-5 border-b-2 text-black dark:text-white animate-appearing"
+                className="relative flex items-start justify-start w-full py-7 md:px-5 border-b-2 text-black dark:text-white animate-appearing"
               >
                 <Link href={`/products/${item.id}`}>
                   <a>
@@ -75,17 +75,17 @@ export default function Cart() {
             ))}
           </div>
         </div>
-        <div className="w-full h-auto lg:h-full flex justify-start lg:justify-center flex-col bg-gray-300 text-black pt-10 xs:pt-20 lg:pt-28 pb-10 px-20 2xl:px-36 dark:border-l-2 dark:border-gray-500">
+        <div className="w-full h-auto md:h-full flex justify-start md:justify-center flex-col bg-gray-300 text-black pt-10 xs:pt-20 md:pt-28 pb-10 px-20 2xl:px-36 dark:border-l-2 dark:border-gray-500">
           <h3 className="text-4xl text-center">Complete your order</h3>
-          <div className="grid grid-cols-2 mt-10 text-sm lg:text-base">
+          <div className="grid grid-cols-2 mt-10 text-sm md:text-base">
             <p className="text-left">ITEMS PRICE</p>
             <p className="text-right">{totalPrice}$</p>
           </div>
-          <div className="grid grid-cols-2 mt-3 border-b-2 border-gray-200 pb-6 mt-10 text-sm lg:text-base">
+          <div className="grid grid-cols-2 mt-3 border-b-2 border-gray-200 pb-6 mt-10 text-sm md:text-base">
             <p className="text-left">SHIPPING</p>
             <p className="text-right">from {totalPrice > 50 ? 0 : 5}$</p>
           </div>
-          <div className="grid grid-cols-2 mt-5 mt-10 text-sm lg:text-base">
+          <div className="grid grid-cols-2 mt-5 mt-10 text-sm md:text-base">
             <p className="text-left font-bold">TOTAL PRICE</p>
             <p className="text-right">{totalPrice > 50 ? totalPrice : totalPrice + 5}$</p>
           </div>

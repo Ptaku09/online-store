@@ -8,7 +8,7 @@ type Props = {
   onChange: ChangeEventHandler<HTMLInputElement>;
 };
 
-export default function NewsletterFormField({ id, type, value, maxLength, onChange }: Props) {
+export default function FormField({ id, type, value, maxLength, onChange }: Props) {
   return (
     <>
       <label className="text-[0.75rem] ml-5 w-full" htmlFor={id}>

@@ -57,9 +57,9 @@ export default function SignIn() {
         />
       </Head>
 
-      <div className="w-screen h-mobile-screen lg:h-screen h-auto flex items-center justify-center px-14 xs:px-32 py-20">
+      <div className="w-screen min-h-screen lg:h-screen h-auto flex items-center justify-center px-14 xs:px-32 py-20">
         <div className="lg:grid lg:grid-cols-[4fr_5fr] w-full lg:w-4/5 h-auto lg:h-full bg-white rounded-lg shadow-2xl dark:shadow-dark">
-          <div className="bg-[url('../public/images/signin.jpg')] bg-cover rounded-l-lg" />
+          <div className="lg:bg-[url('../public/images/signin.jpg')] bg-cover rounded-l-lg" />
           <div className="relative flex items-center justify-center flex-col p-5 font-['Outfit'] text-black">
             <p className="text-4xl lg:absolute top-8 mx-auto border-b-2 border-b-black px-7 pb-4">Sign in!</p>
             <form className="flex flex-col items-center mt-5 lg:mt-0" onSubmit={handleSignIn}>
