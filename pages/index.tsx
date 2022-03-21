@@ -33,7 +33,7 @@ export default function Home() {
           </div>
         </div>
         <div className="h-auto min-h-screen w-screen dark:bg-[rgba(55,55,55,1)] bg-white flex justify-start items-center flex-col pt-10 pb-10 px-16 md:p-24 font-['Outfit']">
-          <h2 className="relative text-6xl font-serif dark:text-white text-black mt-0 mb-12">
+          <h2 className="relative text-6xl font-serif dark:text-white text-black mb-12">
             <span id="why-you-should-choose-us" className="absolute -top-20" />
             Why you should choose us?
           </h2>

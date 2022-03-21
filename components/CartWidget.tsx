@@ -67,7 +67,7 @@ export default function CartWidget() {
             <p className="border-b-2 border-black w-1/3 text-center">total: {totalPrice}$</p>
             <Popover.Button className="w-1/3">
               <Link href="/cart">
-                <a className="border-b-2 lg:hover:border-white border-black text-center">
+                <a className="inline relative overflow-hidden after:absolute after:-z-[1] after:right-0 after:w-0 after:-bottom-[5px] after:bg-white after:h-[2px] after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto hover:after:w-full">
                   CHECKOUT
                   <FontAwesomeIcon className="ml-2" icon={faChevronRight} />
                 </a>

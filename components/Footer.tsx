@@ -34,7 +34,9 @@ export default function Footer() {
             ].map(({ title, href }: { title: string; href: string }) => (
               <div key={title}>
                 <Link href={href}>
-                  <a className="lg:hover:border-b-[1px] lg:border-b-white">{title}</a>
+                  <a className="inline relative overflow-hidden after:absolute after:z-[1] after:right-0 after:w-0 after:-bottom-[1px] after:bg-white after:h-[1px] after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto hover:after:w-full">
+                    {title}
+                  </a>
                 </Link>
                 <br />
               </div>
@@ -50,7 +52,9 @@ export default function Footer() {
             ].map(({ title, storageName }: { title: string; storageName: string }) => (
               <div key={title} onClick={() => (status === 'authenticated' ? sessionStorage.setItem('user-menu-cart', storageName) : null)}>
                 <Link href="/user">
-                  <a className="lg:hover:border-b-[1px] lg:border-b-white">{title}</a>
+                  <a className="inline relative overflow-hidden after:absolute after:z-[1] after:right-0 after:w-0 after:-bottom-[1px] after:bg-white after:h-[1px] after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto hover:after:w-full">
+                    {title}
+                  </a>
                 </Link>
                 <br />
               </div>

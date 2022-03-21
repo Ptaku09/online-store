@@ -69,7 +69,7 @@ export default function User() {
                     />
                     <label
                       htmlFor="orders"
-                      className="pb-1 pr-5 border-b-2 border-white hover:border-black dark:border-[rgba(55,55,55,1)] dark:hover:border-white dark:peer-checked:border-white peer-checked:border-black cursor-pointer"
+                      className="inline relative overflow-hidden after:absolute after:z-[1] after:right-0 after:w-0 after:-bottom-[3px] after:bg-black dark:after:bg-white after:h-[2px] after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto hover:after:w-full peer-checked:after:bg-black dark:peer-checked:after:bg-white peer-checked:after:w-full cursor-pointer"
                     >
                       Your orders
                     </label>
@@ -86,7 +86,7 @@ export default function User() {
                     />
                     <label
                       htmlFor="returns"
-                      className="pb-1 pr-5 border-b-2 border-white hover:border-black dark:border-[rgba(55,55,55,1)] dark:hover:border-white dark:peer-checked:border-white peer-checked:border-black cursor-pointer"
+                      className="inline relative overflow-hidden after:absolute after:z-[1] after:right-0 after:w-0 after:-bottom-[3px] after:bg-black dark:after:bg-white after:h-[2px] after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto hover:after:w-full peer-checked:after:bg-black dark:peer-checked:after:bg-white peer-checked:after:w-full cursor-pointer"
                     >
                       Your returns
                     </label>
@@ -103,7 +103,7 @@ export default function User() {
                     />
                     <label
                       htmlFor="info"
-                      className="pb-1 pr-5 border-b-2 border-white hover:border-black dark:border-[rgba(55,55,55,1)] dark:hover:border-white dark:peer-checked:border-white peer-checked:border-black cursor-pointer"
+                      className="inline relative overflow-hidden after:absolute after:z-[1] after:right-0 after:w-0 after:-bottom-[3px] after:bg-black dark:after:bg-white after:h-[2px] after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto hover:after:w-full peer-checked:after:bg-black dark:peer-checked:after:bg-white peer-checked:after:w-full cursor-pointer"
                     >
                       Account information
                     </label>
@@ -120,7 +120,8 @@ export default function User() {
                     />
                     <label
                       htmlFor="delete"
-                      className="pb-1 pr-5 border-b-2 border-white dark:border-[rgba(55,55,55,1)] hover:border-red-700 dark:hover:border-red-700 peer-checked:border-red-700 text-red-700 cursor-pointer"
+                      // className="pb-1 pr-5 border-b-2 border-white dark:border-[rgba(55,55,55,1)] hover:border-red-700 dark:hover:border-red-700 peer-checked:border-red-700 text-red-700 cursor-pointer"
+                      className="inline relative overflow-hidden text-red-700 after:absolute after:z-[1] after:right-0 after:w-0 after:-bottom-[3px] after:bg-red-700 after:h-[2px] after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto hover:after:w-full peer-checked:after:bg-red-700 peer-checked:after:w-full cursor-pointer"
                     >
                       Delete account
                     </label>
