@@ -120,7 +120,6 @@ export default function User() {
                     />
                     <label
                       htmlFor="delete"
-                      // className="pb-1 pr-5 border-b-2 border-white dark:border-[rgba(55,55,55,1)] hover:border-red-700 dark:hover:border-red-700 peer-checked:border-red-700 text-red-700 cursor-pointer"
                       className="inline relative overflow-hidden text-red-700 after:absolute after:z-[1] after:right-0 after:w-0 after:-bottom-[3px] after:bg-red-700 after:h-[2px] after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto hover:after:w-full peer-checked:after:bg-red-700 peer-checked:after:w-full cursor-pointer"
                     >
                       Delete account
@@ -128,8 +127,10 @@ export default function User() {
                   </div>
                 </div>
               </form>
-              <button className="lg:hover:text-orange-400" onClick={handleSignOut}>
-                Logout
+              <button onClick={handleSignOut}>
+                <p className="inline relative overflow-hidden after:absolute after:z-[1] after:right-0 after:w-0 after:-bottom-[3px] after:bg-black dark:after:bg-white after:h-[2px] after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto hover:after:w-full cursor-pointer">
+                  Logout
+                </p>
               </button>
             </div>
           </div>
