@@ -1,7 +1,18 @@
+import useScroll from '../hooks/useScroll';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 export default function GoToTop() {
+  const { scrollDirection, scrollPosition, scrollToTop } = useScroll();
+
   return (
-    <div>
-      <p>go top top</p>
+    <div
+      onClick={scrollToTop}
+      className={`group w-12 h-12 bg-black fixed bottom-12 right-12 z-10 transition origin-[1px] duration-150 rounded-md cursor-pointer shadow-xl flex items-center justify-center ${
+        scrollDirection == -1 && scrollPosition > 150 ? 'translate-y-0' : 'translate-y-28'
+      }`}
+    >
+      <FontAwesomeIcon icon={faArrowUp} className="group-hover:animate-bounce" />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 type ReturnedValueTypes = {
   scrollPosition: number;
   scrollDirection: number;
+  scrollToTop: () => void;
 };
 
 const useScroll = (): ReturnedValueTypes => {
@@ -24,9 +25,18 @@ const useScroll = (): ReturnedValueTypes => {
     };
   }, [handleScroll]);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return {
     scrollDirection,
     scrollPosition,
+    scrollToTop,
   };
 };
 
