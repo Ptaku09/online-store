@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Popover } from '@headlessui/react';
 import { useRouter } from 'next/router';
 import CartWidget from './CartWidget';
+import useScroll from '../hooks/useScroll';
 
 export default function Navbar() {
   const [screenWidth, setScreenWidth] = useState(768);
@@ -13,6 +14,7 @@ export default function Navbar() {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
   const [icon, setIcon] = useState(faMoon);
+  const { scrollDirection } = useScroll();
 
   useEffect(() => {
     setLoading(false);
@@ -31,7 +33,11 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed bg-black w-screen h-10 top-0 flex justify-center items-center font-['Outfit'] text-white z-10">
+    <header
+      className={`fixed bg-black w-screen h-10 top-0 flex justify-center items-center font-['Outfit'] text-white z-10 transition origin-[1px] duration-150 ${
+        scrollDirection == 1 ? 'translate-y-0' : '-translate-y-10'
+      }`}
+    >
       <Link href="/">
         <a className="font-bold absolute left-5 z-20">FVRT_STR</a>
       </Link>

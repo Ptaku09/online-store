@@ -17,7 +17,12 @@ export default function CartWidget() {
   return (
     <Popover as="span">
       <Popover.Button className="relative">
-        {products.length > 0 ? <span className="w-2 h-2 rounded-full bg-red-600 absolute top-[0.05rem] right-[-0.2rem]" /> : null}
+        {products.length > 0 ? (
+          <>
+            <span className="w-2 h-2 rounded-full bg-red-600 absolute top-[0.05rem] right-[-0.2rem] animate-ping" />
+            <span className="w-2 h-2 rounded-full bg-red-600 absolute top-[0.05rem] right-[-0.2rem]" />
+          </>
+        ) : null}
         <FontAwesomeIcon icon={faShoppingBasket} />
       </Popover.Button>
 
