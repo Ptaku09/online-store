@@ -4,6 +4,7 @@ import Product from '../components/Product';
 import { GetStaticProps } from 'next';
 import { fetchProducts } from '../graphql';
 import React from 'react';
+import GoToTop from '../components/GoToTop';
 
 type Props = {
   products: Product1Fragment[];
@@ -22,6 +23,7 @@ export default function Women({ products }: Props) {
         />
       </Head>
 
+      <GoToTop />
       <div className="min-h-screen h-auto w-screen flex justify-center items-center flex-col p-20 dark:bg-[rgba(55,55,55,1)]">
         <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl mt-8 text-center border-b-2 border-orange-400 pb-7 lg:w-2/3">SHOP WOMEN</h1>
         <div className="flex items-center justify-center flex-row flex-wrap mt-12 2xl:w-4/5">

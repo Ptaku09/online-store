@@ -7,6 +7,7 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Article from '../components/Article';
+import GoToTop from '../components/GoToTop';
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         />
       </Head>
 
+      <GoToTop />
       <div className="h-auto min-h-full md:min-h-screen w-screen flex justify-center items-center flex-col overflow-y-scroll no-scrollbar">
         <div className="w-screen h-mobile-screen md:h-screen flex justify-center items-center flex-col bg-[url('../public/images/homeBackgroundMobile.jpg')] xs:bg-[url('../public/images/homeBackground.jpg')] md:bg-[url('../public/images/homeBackgroundMobile.jpg')] lg:bg-[url('../public/images/homeBackground.jpg')] lg:bg-fixed bg-scroll bg-cover bg-no-repeat bg-center">
           <div className="absolute right-0 top-0 h-mobile-screen w-screen lg:h-screen m-0 shadow-gradient dark:shadow-gradient-dark" />
