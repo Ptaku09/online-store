@@ -8,7 +8,7 @@ type ReturnedValueTypes = {
 
 const useScroll = (): ReturnedValueTypes => {
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [scrollDirection, setScrollDirection] = useState(0);
+  const [scrollDirection, setScrollDirection] = useState(1);
 
   const handleScroll = useCallback(() => {
     if (scrollPosition > window.scrollY) setScrollDirection(1);
