@@ -14,7 +14,7 @@ export default function Navbar() {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
   const [icon, setIcon] = useState(faMoon);
-  const { scrollDirection } = useScroll();
+  const { scrollDirection, scrollPosition } = useScroll();
 
   useEffect(() => {
     setLoading(false);
@@ -35,7 +35,7 @@ export default function Navbar() {
   return (
     <header
       className={`fixed bg-black w-screen h-10 top-0 flex justify-center items-center font-['Outfit'] text-white z-10 transition origin-[1px] duration-150 ${
-        scrollDirection == 1 ? 'translate-y-0' : '-translate-y-10'
+        scrollDirection == 1 || scrollPosition <= 0 ? 'translate-y-0' : '-translate-y-10'
       }`}
     >
       <Link href="/">
