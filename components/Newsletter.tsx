@@ -38,23 +38,29 @@ export default function Newsletter() {
   };
 
   return (
-    <form className="w-full md:w-2/3 md:w-1/2 flex items-center justify-center flex-col text-['Outfit'] p-2 2xl:px-32" onSubmit={registerUser}>
-      <NewsletterFormField id="name" type="text" value={formValues.name || ''} maxLength={20} onChange={handleInputChange} />
-      <NewsletterFormField id="surname" type="text" value={formValues.surname || ''} maxLength={30} onChange={handleInputChange} />
-      <NewsletterFormField id="email" type="email" value={formValues.email} maxLength={40} onChange={handleInputChange} />
-      <button
-        className="bg-orange-400 w-full md:w-1/2 p-4 flex items-center justify-center shadow rounded-lg text-white lg:hover:bg-orange-300 mt-5"
-        type="submit"
+    <>
+      <form
+        data-testid="form"
+        className="w-full md:w-2/3 md:w-1/2 flex items-center justify-center flex-col text-['Outfit'] p-2 2xl:px-32"
+        onSubmit={registerUser}
       >
-        {!isPending ? (
-          'SUBSCRIBE NEWSLETTER'
-        ) : (
-          <>
-            <svg className="animate-spin rounded-full border-4 border-white border-t-gray-500 h-5 w-5 mr-3" viewBox="0 0 24 24" />
-            PROCESSING...
-          </>
-        )}
-      </button>
+        <NewsletterFormField id="name" type="text" value={formValues.name || ''} maxLength={20} onChange={handleInputChange} />
+        <NewsletterFormField id="surname" type="text" value={formValues.surname || ''} maxLength={30} onChange={handleInputChange} />
+        <NewsletterFormField id="email" type="email" value={formValues.email} maxLength={40} onChange={handleInputChange} />
+        <button
+          className="bg-orange-400 w-full md:w-1/2 p-4 flex items-center justify-center shadow rounded-lg text-white lg:hover:bg-orange-300 mt-5"
+          type="submit"
+        >
+          {!isPending ? (
+            'SUBSCRIBE NEWSLETTER'
+          ) : (
+            <>
+              <svg className="animate-spin rounded-full border-4 border-white border-t-gray-500 h-5 w-5 mr-3" viewBox="0 0 24 24" />
+              PROCESSING...
+            </>
+          )}
+        </button>
+      </form>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -108,6 +114,6 @@ export default function Newsletter() {
           </div>
         </Dialog>
       </Transition>
-    </form>
+    </>
   );
 }

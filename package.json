@@ -11,6 +11,7 @@
     "format": "prettier --write .",
     "generate-types": "graphql-codegen --config codegen.yml",
     "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build",
+    "test": "jest --watch",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -36,6 +37,8 @@
     "@graphql-codegen/cli": "^2.5.0",
     "@graphql-codegen/typescript": "^2.4.3",
     "@graphql-codegen/typescript-operations": "^2.2.4",
+    "@testing-library/jest-dom": "^5.16.3",
+    "@testing-library/react": "^12.1.4",
     "@types/node": "17.0.10",
     "@types/react": "17.0.38",
     "autoprefixer": "^10.4.2",
@@ -46,6 +49,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "husky": "^7.0.0",
+    "jest": "^27.5.1",
     "lint-staged": "^12.2.2",
     "postcss": "^8.4.5",
     "prettier": "^2.5.1",
