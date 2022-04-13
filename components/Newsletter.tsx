@@ -40,7 +40,7 @@ export default function Newsletter() {
   return (
     <>
       <form
-        data-testid="form"
+        aria-label="form"
         className="w-full md:w-2/3 md:w-1/2 flex items-center justify-center flex-col text-['Outfit'] p-2 2xl:px-32"
         onSubmit={registerUser}
       >

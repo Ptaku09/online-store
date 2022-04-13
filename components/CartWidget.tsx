@@ -23,7 +23,7 @@ export default function CartWidget() {
             <span className="w-2 h-2 rounded-full bg-red-600 absolute top-[0.05rem] right-[-0.2rem]" />
           </>
         ) : null}
-        <FontAwesomeIcon icon={faShoppingBasket} />
+        <FontAwesomeIcon aria-label="shopping-basket" icon={faShoppingBasket} />
       </Popover.Button>
 
       <Popover.Panel className="absolute top-8 right-[-1.2rem] font-['Outfit'] bg-white dark:bg-[rgba(55,55,55,1)] dark:shadow-dark shadow-2xl w-screen xs:w-[50vw] md:w-[30vw] h-auto max-h-[80vh] overflow-y-auto rounded-b-md xs:rounded-br-none origin-top animate-slide-down">

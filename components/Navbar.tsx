@@ -92,9 +92,9 @@ export default function Navbar() {
       )}
       <div className="absolute right-5">
         {theme === 'light' ? (
-          <FontAwesomeIcon className="cursor-pointer" icon={icon} onClick={() => setTheme('dark')} />
+          <FontAwesomeIcon aria-label="sun" className="cursor-pointer" icon={icon} onClick={() => setTheme('dark')} />
         ) : (
-          <FontAwesomeIcon className="cursor-pointer" icon={icon} onClick={() => setTheme('light')} />
+          <FontAwesomeIcon aria-label="moon" className="cursor-pointer" icon={icon} onClick={() => setTheme('light')} />
         )}
         <Link href="/signin">
           <a>

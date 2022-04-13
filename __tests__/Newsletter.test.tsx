@@ -45,7 +45,7 @@ describe('Newsletter component', () => {
     fireEvent.input(screen.getByLabelText(/surname/i), { target: { value: 'Kowalski' } });
     fireEvent.input(screen.getByLabelText(/email/i), { target: { value: 'test@gmail.com' } });
 
-    expect(screen.getByTestId('form')).toHaveFormValues({
+    expect(screen.getByLabelText('form')).toHaveFormValues({
       name: 'Jan',
       surname: 'Kowalski',
       email: 'test@gmail.com',
